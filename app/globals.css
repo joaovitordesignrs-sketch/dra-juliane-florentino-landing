@@ -91,3 +91,19 @@
     letter-spacing: -0.01em;
   }
 }
+
+/* ---------- Marquee animation (continuous horizontal scroll) ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
+}

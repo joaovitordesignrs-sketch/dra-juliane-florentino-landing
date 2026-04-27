@@ -374,29 +374,94 @@ const HERO_SERVICES = [
   { Icon: DropletIcon, label: "Limpeza e Manutenção" },
 ] as const;
 
+const TRANSFORMATIONS = [
+  { src: "/images/hero-transformation-1.jpg", alt: "Transformação de sorriso — caso 1" },
+  { src: "/images/case-veneers-1.jpg", alt: "Facetas em porcelana — caso 2" },
+  { src: "/images/hero-smile-1.jpg", alt: "Sorriso natural após tratamento — caso 3" },
+  { src: "/images/case-veneers-2.jpg", alt: "Detalhe de facetas — caso 4" },
+  { src: "/images/case-implant-1.jpg", alt: "Reabilitação com implantes — caso 5" },
+  { src: "/images/hero-smile-2.jpg", alt: "Sorriso harmônico — caso 6" },
+  { src: "/images/smile-after-1.jpg", alt: "Resultado de reabilitação oral — caso 7" },
+  { src: "/images/smile-after-2.jpg", alt: "Estética dental — caso 8" },
+] as const;
+
+function TransformationsMarquee() {
+  // Duplicate the list so the marquee loops seamlessly when translateX hits -50%.
+  const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS];
+  return (
+    <div className="relative">
+      {/* Edge fade masks so cards fade in/out smoothly at the container boundary */}
+      <div
+        aria-hidden="true"
+        className="from-background-soft pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r to-transparent md:w-20"
+      />
+      <div
+        aria-hidden="true"
+        className="from-background-soft pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l to-transparent md:w-20"
+      />
+
+      <div className="overflow-hidden">
+        <ul
+          className="animate-marquee flex w-max gap-4 [animation:marquee_45s_linear_infinite] hover:[animation-play-state:paused] md:gap-6"
+          aria-label="Transformações realizadas pela Dra. Juliane Florentino"
+        >
+          {items.map((item, i) => (
+            <li
+              key={`${item.src}-${i}`}
+              className="border-border bg-background relative aspect-[4/5] w-[220px] shrink-0 overflow-hidden rounded-3xl border shadow-sm md:w-[280px]"
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                sizes="(max-width: 768px) 220px, 280px"
+                className="object-cover"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="text-muted-foreground mt-3 text-center text-xs italic md:mt-4 md:text-sm">
+        Resultados podem variar conforme cada caso.
+      </p>
+    </div>
+  );
+}
+
 function HeroSection() {
   return (
     <section id="hero" className="bg-background-soft relative">
+      {/* Title block — full width above the carousel */}
       <Container>
-        <div className="grid grid-cols-1 items-center gap-10 pt-10 pb-24 md:grid-cols-2 md:gap-12 md:pt-14 md:pb-32 lg:gap-16 lg:pt-20 lg:pb-40">
-          {/* Text column */}
-          <div className="space-y-6 md:order-1 md:space-y-7">
-            <TaglineChip>Especialista em prótese e reabilitação oral</TaglineChip>
+        <div className="space-y-6 pt-10 md:space-y-7 md:pt-14 lg:pt-20">
+          <TaglineChip>Especialista em prótese e reabilitação oral</TaglineChip>
 
-            <h1 className="font-heading text-foreground text-4xl leading-[1.05] font-medium tracking-tight md:text-5xl lg:text-6xl">
-              Facetas, Implantes e Reabilitação Oral em Goiânia para você voltar a sorrir com
-              confiança
-            </h1>
+          <h1 className="font-heading text-foreground max-w-4xl text-4xl leading-[1.05] font-medium tracking-tight md:text-5xl lg:text-6xl">
+            Facetas, Implantes e Reabilitação Oral em Goiânia para você voltar a sorrir com
+            confiança
+          </h1>
+        </div>
+      </Container>
 
+      {/* Antes/Depois marquee — full bleed, right after title */}
+      <div className="mt-8 md:mt-12 lg:mt-16">
+        <TransformationsMarquee />
+      </div>
+
+      {/* Subtitle + CTA + portrait — 2 columns on desktop, stacked on mobile */}
+      <Container>
+        <div className="mt-10 grid grid-cols-1 items-center gap-10 pb-24 md:mt-14 md:grid-cols-2 md:gap-12 md:pb-32 lg:gap-16 lg:pb-40">
+          <div className="space-y-5 md:order-1 md:space-y-6">
             <p className="text-muted-foreground max-w-xl text-base leading-relaxed md:text-lg">
-              A Dra. Juliane Florentino é especialista em prótese dental e reabilitação oral,
-              oferecendo tratamentos personalizados para transformar seu sorriso com naturalidade,
-              estética e segurança.
+              A Dra. Juliane Florentino é especialista em prótese dental e reabilitação oral.
             </p>
-
+            <p className="text-muted-foreground max-w-xl text-base leading-relaxed md:text-lg">
+              Tratamentos personalizados para você voltar a sorrir com confiança.
+            </p>
             <p className="text-foreground/80 max-w-xl text-sm leading-relaxed italic md:text-base">
-              Se você sente vergonha de sorrir, evita fotos, perdeu dentes ou deseja melhorar a
-              estética do seu sorriso, existe um caminho planejado para recuperar sua autoestima.
+              Vergonha de sorrir, evita fotos ou perdeu dentes? Existe um caminho planejado para
+              recuperar sua autoestima.
             </p>
 
             <div className="pt-2">
@@ -409,14 +474,11 @@ function HeroSection() {
             </div>
           </div>
 
-          {/* Portrait column */}
           <div className="relative flex items-center justify-center md:order-2">
-            {/* Decorative blob behind */}
             <div
               aria-hidden="true"
               className="bg-primary/15 absolute inset-0 -z-0 mx-auto h-full w-[88%] rounded-[40%_60%_55%_45%/55%_45%_60%_40%] blur-[2px]"
             />
-            {/* Small accent circle */}
             <div
               aria-hidden="true"
               className="bg-primary/20 absolute top-6 right-2 -z-0 size-12 rounded-full md:size-16"
