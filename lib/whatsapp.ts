@@ -5,10 +5,7 @@
  * @param message pt-BR message to pre-fill the chat
  * @returns "https://wa.me/<phone>?text=<encoded message>"
  */
-export function buildWhatsAppLink(opts: {
-  phone: string;
-  message: string;
-}): string {
+export function buildWhatsAppLink(opts: { phone: string; message: string }): string {
   const cleanPhone = opts.phone.replace(/\D/g, "");
   const encoded = encodeURIComponent(opts.message);
   return `https://wa.me/${cleanPhone}?text=${encoded}`;
