@@ -14,7 +14,7 @@ Granularidade: **coarse** (3-5 fases). Optamos por 3 fases — a página é uma 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Fundação e Sistema de Marca** - Next.js 16 + Tailwind + shadcn rodando, identidade visual "clínica premium" (paleta, tipografia, logo, componentes-base) pronta para uso
+- [x] **Phase 1: Fundação e Sistema de Marca** - Next.js 16 + Tailwind + shadcn rodando, identidade visual "clínica premium" (paleta, tipografia, logo, componentes-base) pronta para uso
 - [ ] **Phase 2: Construção das 7 Seções da Página** - Hero, prova social, galeria antes/depois, problema, tratamentos, autoridade e CTA final + localização — todas com copy pt-BR real e CTAs WhatsApp funcionais
 - [ ] **Phase 3: Performance, SEO/Compliance e Deploy** - LCP < 2.5s, schema Dentist, footer com CRO, sitemap/robots e site publicado em `*.vercel.app` testado em iOS e Android
 
@@ -33,9 +33,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Bootstrap Next.js 16 + TypeScript strict + Tailwind v4 + ESLint/Prettier + folder structure + pt-BR README
-- [ ] 01-02-PLAN.md — Brand tokens (@theme), next/font (Fraunces + Inter), inline SVG Logo word-mark, WCAG-AA verified palette
-- [ ] 01-03-PLAN.md — shadcn/ui init, Button (3 variants × 3 sizes, asChild via Slot, React-19 ref-as-prop), Section + Container, full smoke-test
+- [x] 01-01-PLAN.md — Bootstrap Next.js 16 + TypeScript strict + Tailwind v4 + ESLint/Prettier + folder structure + pt-BR README
+- [x] 01-02-PLAN.md — Brand tokens (@theme), next/font (Fraunces + Inter), inline SVG Logo word-mark, WCAG-AA verified palette
+- [x] 01-03-PLAN.md — shadcn/ui init, Button (3 variants × 3 sizes, asChild via Slot, React-19 ref-as-prop), Section + Container, full smoke-test
 
 ### Phase 2: Construção das 7 Seções da Página
 **Goal**: Entregar a landing page completa de 7 seções verticais (hero, prova social, galeria antes/depois, problema/virada, tratamentos, autoridade, CTA final + localização) renderizando em rota única com copy pt-BR real do briefing, imagens otimizadas via `next/image`, layout mobile-first responsivo, e pelo menos 5 CTAs WhatsApp distribuídos abrindo `wa.me/` com mensagem pré-preenchida.
@@ -76,7 +76,7 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundação e Sistema de Marca | 0/TBD | Not started | - |
+| 1. Fundação e Sistema de Marca | 3/3 | Complete | 2026-04-27 |
 | 2. Construção das 7 Seções da Página | 0/TBD | Not started | - |
 | 3. Performance, SEO/Compliance e Deploy | 0/TBD | Not started | - |
 

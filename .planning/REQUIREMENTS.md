@@ -25,7 +25,8 @@ Requirements for initial release. Each maps to roadmap phases.
 **: Logo word-mark da Dra. Juliane Florentino criado (SVG inline) e renderizado no header/footer
 - [x] **BRAND-04
 **: Estilo visual definido como "clínica premium" — limpo, sofisticado, acolhedor (não corporativo, não médico-frio)
-- [ ] **BRAND-05**: Componentes base (Button, Section, Container) usando design tokens do sistema
+- [x] **BRAND-05
+**: Componentes base (Button, Section, Container) usando design tokens do sistema
 
 ### Hero (Page 1)
 
@@ -179,7 +180,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BRAND-02 | Phase 1 | Pending |
 | BRAND-03 | Phase 1 | Pending |
 | BRAND-04 | Phase 1 | Pending |
-| BRAND-05 | Phase 1 | Pending |
+| BRAND-05 | Phase 1 | Complete |
 | HERO-01 | Phase 2 | Pending |
 | HERO-02 | Phase 2 | Pending |
 | HERO-03 | Phase 2 | Pending |
