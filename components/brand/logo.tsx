@@ -16,28 +16,28 @@ export interface LogoProps {
 }
 
 const SIZE_WIDTH = {
-  sm: 160,
-  md: 200,
-  lg: 240,
-  xl: 320,
+  sm: 200,
+  md: 240,
+  lg: 300,
+  xl: 400,
 } as const;
 
 /**
- * Word-mark "Dra. JULIANE / FLORENTINO" rendered as a two-line typographic
- * SVG block in Fraunces caps. Color flows through `currentColor` — set the
- * parent's `text-*` class to recolor.
+ * Word-mark "Dra. Juliane Florentino" rendered as a single-line minimalist
+ * serif in Fraunces 400. Mixed case, tight tracking, no divider — editorial
+ * masthead feel. Color flows through `currentColor`.
  *
  * React-19 native: ref-as-prop, no forwardRef.
  */
 export function Logo({ size = "md", className, ariaLabel }: LogoProps) {
   const accessibleLabel = ariaLabel ?? "Dra. Juliane Florentino";
   const width = SIZE_WIDTH[size];
-  const height = (width * 96) / 240;
+  const height = (width * 60) / 320;
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 240 96"
+      viewBox="0 0 320 60"
       width={width}
       height={height}
       role="img"
@@ -46,43 +46,18 @@ export function Logo({ size = "md", className, ariaLabel }: LogoProps) {
     >
       <title>{accessibleLabel}</title>
       <text
-        x="120"
-        y="36"
+        x="160"
+        y="40"
         textAnchor="middle"
         fill="currentColor"
         style={{
           fontFamily: "var(--font-heading), Georgia, serif",
-          fontSize: "20px",
-          fontWeight: 500,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
+          fontSize: "30px",
+          fontWeight: 400,
+          letterSpacing: "0.005em",
         }}
       >
-        Dra. JULIANE
-      </text>
-      <line
-        x1="78"
-        y1="50"
-        x2="162"
-        y2="50"
-        stroke="currentColor"
-        strokeWidth="1"
-        opacity="0.5"
-      />
-      <text
-        x="120"
-        y="80"
-        textAnchor="middle"
-        fill="currentColor"
-        style={{
-          fontFamily: "var(--font-heading), Georgia, serif",
-          fontSize: "26px",
-          fontWeight: 600,
-          letterSpacing: "0.32em",
-          textTransform: "uppercase",
-        }}
-      >
-        FLORENTINO
+        Dra. Juliane Florentino
       </text>
     </svg>
   );
