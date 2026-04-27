@@ -166,13 +166,88 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (a ser preenchido pelo roadmapper) | | |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| BRAND-01 | Phase 1 | Pending |
+| BRAND-02 | Phase 1 | Pending |
+| BRAND-03 | Phase 1 | Pending |
+| BRAND-04 | Phase 1 | Pending |
+| BRAND-05 | Phase 1 | Pending |
+| HERO-01 | Phase 2 | Pending |
+| HERO-02 | Phase 2 | Pending |
+| HERO-03 | Phase 2 | Pending |
+| HERO-04 | Phase 2 | Pending |
+| HERO-05 | Phase 2 | Pending |
+| HERO-06 | Phase 2 | Pending |
+| SOCIAL-01 | Phase 2 | Pending |
+| SOCIAL-02 | Phase 2 | Pending |
+| SOCIAL-03 | Phase 2 | Pending |
+| SOCIAL-04 | Phase 2 | Pending |
+| SOCIAL-05 | Phase 2 | Pending |
+| GALLERY-01 | Phase 2 | Pending |
+| GALLERY-02 | Phase 2 | Pending |
+| GALLERY-03 | Phase 2 | Pending |
+| GALLERY-04 | Phase 2 | Pending |
+| GALLERY-05 | Phase 2 | Pending |
+| STORY-01 | Phase 2 | Pending |
+| STORY-02 | Phase 2 | Pending |
+| STORY-03 | Phase 2 | Pending |
+| STORY-04 | Phase 2 | Pending |
+| STORY-05 | Phase 2 | Pending |
+| TREAT-01 | Phase 2 | Pending |
+| TREAT-02 | Phase 2 | Pending |
+| TREAT-03 | Phase 2 | Pending |
+| TREAT-04 | Phase 2 | Pending |
+| TREAT-05 | Phase 2 | Pending |
+| TREAT-06 | Phase 2 | Pending |
+| TREAT-07 | Phase 2 | Pending |
+| AUTH-01 | Phase 2 | Pending |
+| AUTH-02 | Phase 2 | Pending |
+| AUTH-03 | Phase 2 | Pending |
+| AUTH-04 | Phase 2 | Pending |
+| AUTH-05 | Phase 2 | Pending |
+| CTA-01 | Phase 2 | Pending |
+| CTA-02 | Phase 2 | Pending |
+| CTA-03 | Phase 2 | Pending |
+| CTA-04 | Phase 2 | Pending |
+| CTA-05 | Phase 2 | Pending |
+| CTA-06 | Phase 2 | Pending |
+| PERF-01 | Phase 3 | Pending |
+| PERF-02 | Phase 3 | Pending |
+| PERF-03 | Phase 3 | Pending |
+| PERF-04 | Phase 3 | Pending |
+| PERF-05 | Phase 3 | Pending |
+| PERF-06 | Phase 3 | Pending |
+| PERF-07 | Phase 3 | Pending |
+| SEO-01 | Phase 3 | Pending |
+| SEO-02 | Phase 3 | Pending |
+| SEO-03 | Phase 3 | Pending |
+| SEO-04 | Phase 3 | Pending |
+| SEO-05 | Phase 3 | Pending |
+| SEO-06 | Phase 3 | Pending |
+| SEO-07 | Phase 3 | Pending |
+| SEO-08 | Phase 3 | Pending |
+| SEO-09 | Phase 3 | Pending |
+| DEPLOY-01 | Phase 3 | Pending |
+| DEPLOY-02 | Phase 3 | Pending |
+| DEPLOY-03 | Phase 3 | Pending |
+| DEPLOY-04 | Phase 3 | Pending |
+| DEPLOY-05 | Phase 3 | Pending |
+| DEPLOY-06 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 60 total
-- Mapped to phases: 0 (pre-roadmap)
-- Unmapped: 60 ⚠️ (será resolvido pelo roadmapper)
+- v1 requirements: 71 total (10 Foundation+Brand, 39 Page Sections, 22 Performance+SEO+Deploy)
+- Mapped to phases: 71 (100%)
+- Unmapped: 0
+- Phase 1 (Fundação e Sistema de Marca): 10 requirements
+- Phase 2 (Construção das 7 Seções): 39 requirements
+- Phase 3 (Performance, SEO/Compliance e Deploy): 22 requirements
+
+> Nota sobre contagem: o resumo do orquestrador citou 60 v1 requirements; a contagem real por categoria (somatório dos itens efetivamente listados nas seções acima) é 71. Esta tabela reflete a contagem real.
 
 ---
 *Requirements defined: 2026-04-27*
-*Last updated: 2026-04-27 after initial definition*
+*Last updated: 2026-04-27 — traceability preenchido pelo roadmapper*
