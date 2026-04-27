@@ -30,10 +30,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Paleta da marca está disponível como Tailwind tokens (`bg-primary`, `text-foreground`, etc.) e a tipografia carrega via `next/font` sem flash de fonte
   4. Logo word-mark da Dra. Juliane Florentino renderiza em SVG inline (não imagem) e está pronto para uso em header/footer
   5. Componentes-base (`Button`, `Section`, `Container`) existem em `components/ui/` consumindo os tokens da marca e podem ser importados a partir de qualquer página
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md — Bootstrap Next.js 16 + TypeScript strict + Tailwind v4 + ESLint/Prettier + folder structure + pt-BR README
+- [ ] 01-02-PLAN.md — Brand tokens (@theme), next/font (Fraunces + Inter), inline SVG Logo word-mark, WCAG-AA verified palette
+- [ ] 01-03-PLAN.md — shadcn/ui init, Button (3 variants × 3 sizes, asChild via Slot, React-19 ref-as-prop), Section + Container, full smoke-test
 
 ### Phase 2: Construção das 7 Seções da Página
 **Goal**: Entregar a landing page completa de 7 seções verticais (hero, prova social, galeria antes/depois, problema/virada, tratamentos, autoridade, CTA final + localização) renderizando em rota única com copy pt-BR real do briefing, imagens otimizadas via `next/image`, layout mobile-first responsivo, e pelo menos 5 CTAs WhatsApp distribuídos abrindo `wa.me/` com mensagem pré-preenchida.
