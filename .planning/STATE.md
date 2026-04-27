@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
+stopped_at: Completed 01-02-PLAN.md
+last_updated: "2026-04-27T20:17:48.717Z"
+last_activity: 2026-04-27 -- Phase --phase execution started
+progress:
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 3
+  completed_plans: 2
+  percent: 67
+---
+
 # Project State
 
 ## Project Reference
@@ -5,20 +21,21 @@
 See: .planning/PROJECT.md (updated 2026-04-27)
 
 **Core value:** Cada visitante que chega na página clica em "Agendar avaliação" no WhatsApp.
-**Current focus:** Phase 1 — Fundação e Sistema de Marca
+**Current focus:** Phase --phase — 01
 
 ## Current Position
 
-Phase: 1 of 3 (Fundação e Sistema de Marca)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-04-27 — Roadmap criado, 71 v1 requirements mapeados em 3 fases (granularidade coarse)
+Phase: --phase (01) — EXECUTING
+Plan: 1 of --name
+Status: Executing Phase --phase
+Last activity: 2026-04-27 -- Phase --phase execution started
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 0
 - Average duration: —
 - Total execution time: 0h
@@ -32,10 +49,12 @@ Progress: [░░░░░░░░░░] 0%
 | 3. Performance, SEO/Compliance e Deploy | 0/TBD | — | — |
 
 **Recent Trend:**
+
 - Last 5 plans: —
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P02 | 10 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -49,6 +68,8 @@ Decisões registradas em PROJECT.md → "Key Decisions". Decisões recentes que 
 - [Init]: Identidade visual criada do zero — direção "clínica premium" (Phase 1)
 - [Init]: Antes/depois + depoimentos mantidos com mitigação CFO 196/2019 (disclaimer + CRO no footer)
 - [Init]: Subdomain Vercel para v1 — domínio próprio fica para v2
+- Plan 01-02: Adjusted --color-primary-strong from #A56B4F to #955A42 to meet WCAG AA normal-text contrast floor (5.16:1 vs 4.09:1 measured for the original)
+- Plan 01-02: Fraunces (variable serif) + Inter (sans) chosen and locked via next/font/google with display: swap; self-hosted via /_next/static/media/
 
 ### Pending Todos
 
@@ -67,6 +88,8 @@ Nenhum — diretório `.planning/todos/pending/` ainda não criado.
 
 ## Session Continuity
 
-Last session: 2026-04-27
-Stopped at: Roadmap inicial criado e revisado; pronto para planejar Phase 1
-Resume file: None — próximo passo é `/gsd-plan-phase 1`
+Last session: 2026-04-27T20:17:48.713Z
+Stopped at: Completed 01-02-PLAN.md
+Resume file: None
+
+**Planned Phase:** 1 (Fundação e Sistema de Marca) — 3 plans — 2026-04-27T19:53:04.077Z

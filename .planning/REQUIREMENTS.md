@@ -17,10 +17,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Brand
 
-- [ ] **BRAND-01**: Paleta de cores definida e exposta como CSS variables / Tailwind theme tokens (primária + neutros + accent)
-- [ ] **BRAND-02**: Tipografia escolhida e carregada via `next/font` (heading + body, com fallback)
-- [ ] **BRAND-03**: Logo word-mark da Dra. Juliane Florentino criado (SVG inline) e renderizado no header/footer
-- [ ] **BRAND-04**: Estilo visual definido como "clínica premium" — limpo, sofisticado, acolhedor (não corporativo, não médico-frio)
+- [x] **BRAND-01
+**: Paleta de cores definida e exposta como CSS variables / Tailwind theme tokens (primária + neutros + accent)
+- [x] **BRAND-02
+**: Tipografia escolhida e carregada via `next/font` (heading + body, com fallback)
+- [x] **BRAND-03
+**: Logo word-mark da Dra. Juliane Florentino criado (SVG inline) e renderizado no header/footer
+- [x] **BRAND-04
+**: Estilo visual definido como "clínica premium" — limpo, sofisticado, acolhedor (não corporativo, não médico-frio)
 - [ ] **BRAND-05**: Componentes base (Button, Section, Container) usando design tokens do sistema
 
 ### Hero (Page 1)
