@@ -1,4 +1,4 @@
-import { Fraunces, Inter, Pinyon_Script } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 
 /**
  * Heading font — Fraunces (variable serif, editorial feel).
@@ -38,18 +38,3 @@ export const fontBody = Inter({
   ],
 });
 
-/**
- * Script display font — Pinyon Script (handwritten cursive, single weight 400).
- * Used exclusively for the "Dra. Juliane Florentino" wordmark in header / footer.
- * Single weight only — Pinyon Script ships as 400 italic-style, no other variants exist on Google Fonts.
- * `display: "swap"` is mandatory; preload is enabled so the wordmark renders immediately above the fold.
- */
-export const fontScript = Pinyon_Script({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-script",
-  weight: ["400"],
-  style: ["normal"],
-  preload: true,
-  fallback: ["Allura", "Great Vibes", "Apple Chancery", "cursive"],
-});

@@ -41,7 +41,6 @@
   --font-body:
     var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  --font-script: var(--font-script), "Pinyon Script", "Allura", "Great Vibes", "Apple Chancery", cursive;
 }
 
 /* ---------- shadcn/ui token aliases (mapped to brand tokens) ---------- */
