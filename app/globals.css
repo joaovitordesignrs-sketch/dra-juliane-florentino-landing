@@ -24,6 +24,31 @@
     "Helvetica Neue", Arial, sans-serif;
 }
 
+/* ---------- shadcn/ui token aliases (mapped to brand tokens) ---------- */
+/* These exist so future shadcn components (Card, Dialog, Input, etc.) inherit our palette. */
+/* They duplicate brand tokens with shadcn's expected names — single source of truth is the brand block above. */
+@theme {
+  --color-card: var(--color-background);
+  --color-card-foreground: var(--color-foreground);
+
+  --color-popover: var(--color-background);
+  --color-popover-foreground: var(--color-foreground);
+
+  --color-secondary: var(--color-muted);
+  --color-secondary-foreground: var(--color-foreground);
+
+  --color-accent: var(--color-muted);
+  --color-accent-foreground: var(--color-foreground);
+
+  --color-destructive: #c0392b;
+  --color-destructive-foreground: #ffffff;
+
+  --color-input: var(--color-border);
+  --color-ring: var(--color-primary);
+
+  --radius: 0.5rem;
+}
+
 /* ---------- Base layer (font-body default + smooth fonts) ---------- */
 @layer base {
   html {
