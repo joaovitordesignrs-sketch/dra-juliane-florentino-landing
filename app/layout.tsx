@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fontBody, fontHeading } from "@/lib/fonts";
+import { fontBody, fontHeading, fontScript } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="pt-BR"
-      className={cn(fontHeading.variable, fontBody.variable)}
+      className={cn(fontHeading.variable, fontBody.variable, fontScript.variable)}
       suppressHydrationWarning
     >
       <body className="font-body bg-background text-foreground antialiased">{children}</body>
