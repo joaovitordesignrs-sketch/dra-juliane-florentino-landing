@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 01-03-PLAN.md (Phase 1 complete)
-last_updated: "2026-04-27T20:29:36.891Z"
-last_activity: 2026-04-27 -- Phase 1 complete (Plan 01-03 executed; BRAND-05 landed)
+stopped_at: Phase 2 sections built in single executor run (deviation from 3-plan structure)
+last_updated: "2026-04-27T21:30:00.000Z"
+last_activity: 2026-04-27 -- Phase 2 landing page built end-to-end in one executor pass
 progress:
   total_phases: 3
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-27)
 
 **Core value:** Cada visitante que chega na página clica em "Agendar avaliação" no WhatsApp.
-**Current focus:** Phase 1 complete — ready for `/gsd-plan-phase 2`
+**Current focus:** Phase 2 complete (single executor run) — ready for Phase 3 (perf, SEO, compliance, deploy)
 
 ## Current Position
 
-Phase: 1 (Fundação e Sistema de Marca) — COMPLETE
-Plan: 3 of 3 (01-03-PLAN.md landed)
-Status: Phase 1 closed; awaiting Phase 2 planning
-Last activity: 2026-04-27 — Plan 01-03 executed (BRAND-05 landed; Button + Section + Container shipped)
+Phase: 2 (Construção das 7 Seções da Página) — COMPLETE (single executor pass)
+Plan: built 7 sections + header + footer + sticky FAB in one go
+Status: Landing page live in dev; production build green; ready for Phase 3
+Last activity: 2026-04-27 — Phase 2 sections built end-to-end (deviation from 3-plan structure per user direction)
 
-Progress: [██████████] 100% of Phase 1 (3/3 plans)
+Progress: [██████████] 100% of Phase 2 (1/1 mega-plan)
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [██████████] 100% of Phase 1 (3/3 plans)
 | Phase 01 | P01 | 12 | 3 | ~20 |
 | Phase 01 | P02 | 10 | 3 | 6 |
 | Phase 01 | P03 | 12 | 3 | 8 |
+| Phase 02 | mega | ~25 | 1 (mega) | ~17 (1 page + 1 layout + 1 css + 13 imgs renamed) |
 
 ## Accumulated Context
 
@@ -80,6 +81,12 @@ Decisões registradas em PROJECT.md → "Key Decisions". Decisões recentes que 
 - Plan 01-03: ContainerProps as type alias (not empty extending-interface) to satisfy @typescript-eslint/no-empty-object-type from next/typescript preset
 - Plan 01-03: Use Tailwind v4 max-w-7xl (1280px) for Container; v3's max-w-screen-xl was removed in v4 and would silently break the layout at desktop widths
 - Plan 01-03: All Phase 1 components are React-19 native plain function components with ref-as-prop (no React.forwardRef), matching shadcn new-york-v4 registry
+- Phase 2 (mega): Built whole landing in a single executor run, replacing the originally planned 3-plan structure per user request to ship the actual content
+- Phase 2 (mega): Landing rendered as a single Server Component (app/page.tsx) — no "use client", page is fully static-prerendered
+- Phase 2 (mega): All client images renamed in-place to descriptive names (hero-, case-, dra-juliane-, clinic-, smile-) before commit so next/image refs are readable; 6 unsuitable client images removed (3rd-party watermark, raw clinical close-ups, denture w/ UI artifact, 1 duplicate)
+- Phase 2 (mega): Inline SVG icons (WhatsApp, Star, Check, 4 treatment glyphs) — no lucide-react usage to keep bundle minimal
+- Phase 2 (mega): 9 WhatsApp CTAs distributed across page (header, hero, social, gallery, story, treatments, authority, final, sticky mobile FAB) — each with section-specific pre-fill message
+- Phase 2 (mega): Goiânia map iframe is a city-wide placeholder; exact clinic-address embed deferred to Phase 3 (TODO marker in code)
 
 ### Pending Todos
 
@@ -98,8 +105,22 @@ Nenhum — diretório `.planning/todos/pending/` ainda não criado.
 
 ## Session Continuity
 
-Last session: 2026-04-27T20:29:36.889Z
-Stopped at: Completed 01-03-PLAN.md (Phase 1 complete)
+Last session: 2026-04-27T21:30:00.000Z
+Stopped at: Phase 2 sections built in single executor run (deviation from 3-plan structure — direct content build per user request)
 Resume file: None
 
 **Planned Phase:** 1 (Fundação e Sistema de Marca) — 3 plans — 2026-04-27T19:53:04.077Z
+**Executed Phase 2 inline (no formal plan files):** 2026-04-27T21:30:00.000Z — landing page replaces showcase, ready for Phase 3 hardening (CRO swap, WhatsApp env var, real map embed, perf/Lighthouse pass, OG image, deploy)
+
+## Phase 3 — Carry-over Tasks (deploy-blockers)
+
+These items must be resolved before go-live:
+
+- [ ] Real CRO/GO number from Dra. (replace "CRO/GO XXXXX" in `app/page.tsx` Footer)
+- [ ] Real WhatsApp number via `NEXT_PUBLIC_WHATSAPP_PHONE` env var (replace `5562000000000` constant in `app/page.tsx`)
+- [ ] Exact clinic Google Maps embed URL (replace city-wide Goiânia placeholder in FinalCtaSection — TODO marker in code)
+- [ ] Política de Privacidade page (currently `#privacidade` placeholder anchor in footer)
+- [ ] Replace synthesized depoimentos with real Google review excerpts (validation w/ Dra.'s legal counsel recommended)
+- [ ] OG image for social shares (`public/og/` exists but empty)
+- [ ] Lighthouse mobile ≥ 90 pass (LCP < 2.5s, CLS < 0.1, INP < 200ms)
+- [ ] User to validate any obvious mismatches in image categorization (see executor return msg)
