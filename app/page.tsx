@@ -1,110 +1,163 @@
+import Link from "next/link";
+
 import { Logo } from "@/components/brand";
+import { Container, Section } from "@/components/layout";
+import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
-    <main className="bg-background text-foreground min-h-screen px-6 py-16 md:px-12 md:py-24">
-      <div className="mx-auto max-w-3xl space-y-16">
-        {/* Logo — should render in foreground color, scale to 240px */}
-        <header className="flex justify-center">
-          <Logo width={240} className="text-foreground" />
-        </header>
-
-        {/* Heading test — Fraunces, weight 600, large */}
-        <section className="space-y-6 text-center">
-          <h1 className="font-heading text-4xl font-semibold tracking-tight md:text-6xl">
-            Reabilitação oral, facetas e implantes em Goiânia.
-          </h1>
-          <p className="font-body text-muted-foreground mx-auto max-w-xl text-base leading-relaxed md:text-lg">
-            Esta página é um placeholder de smoke-test do sistema de marca. A Phase 2 substitui o
-            conteúdo pelas 7 seções reais do briefing.
-          </p>
-        </section>
-
-        {/* Color swatch grid — proves every @theme token is reachable as a Tailwind utility */}
-        <section className="space-y-4">
-          <h2 className="font-heading text-muted-foreground text-sm font-medium tracking-widest uppercase">
-            Tokens da marca (smoke-test)
-          </h2>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Swatch
-              label="background"
-              className="bg-background border-border border"
-              textClass="text-foreground"
-            />
-            <Swatch label="foreground" className="bg-foreground" textClass="text-background" />
-            <Swatch label="primary" className="bg-primary" textClass="text-primary-foreground" />
-            <Swatch
-              label="primary-strong"
-              className="bg-primary-strong"
-              textClass="text-primary-strong-foreground"
-            />
-            <Swatch label="muted" className="bg-muted" textClass="text-muted-foreground" />
-            <Swatch label="muted-fg" className="bg-muted-foreground" textClass="text-background" />
-            <Swatch label="border" className="bg-border" textClass="text-foreground" />
-            <Swatch label="whatsapp" className="bg-accent-whatsapp" textClass="text-foreground" />
+    <main className="bg-background text-foreground">
+      {/* ====== Header ====== */}
+      <Section as="div" className="border-border border-b py-8 md:py-10 lg:py-10">
+        <Container>
+          <div className="flex items-center justify-between">
+            <Logo width={200} className="text-foreground" />
+            <Button asChild variant="ghost" size="sm">
+              <Link href="#contato">Contato</Link>
+            </Button>
           </div>
-        </section>
+        </Container>
+      </Section>
 
-        {/* Typography ladder — proves font-heading and font-body resolve correctly */}
-        <section className="space-y-3">
-          <h2 className="font-heading text-muted-foreground text-sm font-medium tracking-widest uppercase">
-            Tipografia
-          </h2>
-          <p className="font-heading text-3xl font-semibold">Fraunces 600 — heading principal</p>
-          <p className="font-heading text-2xl font-medium">Fraunces 500 — subhead</p>
-          <p className="font-heading text-xl font-normal">Fraunces 400 — body serif</p>
-          <p className="font-body text-base">
-            Inter 400 — corpo de texto. Esta linha existe para verificar que a fonte body carrega
-            via next/font sem flash visível ao recarregar.
-          </p>
-          <p className="font-body text-base font-semibold">Inter 600 — ênfase em corpo de texto.</p>
-          <p className="font-body text-muted-foreground text-sm">
-            Inter 400 / muted-foreground — usado para microcopy e disclaimers.
-          </p>
-        </section>
+      {/* ====== Hero (smoke-test placeholder) ====== */}
+      <Section id="hero">
+        <Container>
+          <div className="mx-auto max-w-3xl space-y-8 text-center">
+            <h1 className="font-heading text-4xl font-semibold tracking-tight md:text-6xl">
+              Reabilitação oral, facetas e implantes em Goiânia.
+            </h1>
+            <p className="font-body text-muted-foreground mx-auto max-w-xl text-base leading-relaxed md:text-lg">
+              Smoke-test do sistema de marca + componentes base. A Phase 2 substitui o conteúdo
+              pelas 7 seções reais do briefing.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Button asChild variant="primary" size="lg">
+                <a href="https://wa.me/5562000000000?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.">
+                  Agendar pelo WhatsApp
+                </a>
+              </Button>
+              <Button asChild variant="ghost" size="lg">
+                <Link href="#components">Ver componentes</Link>
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </Section>
 
-        {/* Primary text accent — proves primary-strong is the body-text variant */}
-        <section className="space-y-2">
-          <p className="font-body text-base">
-            Este link de exemplo usa{" "}
-            <a href="#" className="text-primary-strong font-medium underline underline-offset-4">
-              text-primary-strong
-            </a>{" "}
-            para passar contraste WCAG AA em texto pequeno (5:1).
-          </p>
-          <p className="font-body text-base">
-            Heading com tom primário em{" "}
-            <span className="text-primary text-2xl font-semibold">tamanho grande</span> usa
-            text-primary diretamente (3.4:1, AA large only).
-          </p>
-        </section>
+      {/* ====== Component matrix (proves all 9 button permutations + Section composition) ====== */}
+      <Section id="components" className="bg-muted">
+        <Container>
+          <div className="space-y-12">
+            <header className="space-y-2 text-center">
+              <h2 className="font-heading text-3xl font-semibold md:text-4xl">
+                Component matrix (smoke-test)
+              </h2>
+              <p className="font-body text-muted-foreground text-base">
+                Variantes e tamanhos de Button. Phase 2 substitui esta seção.
+              </p>
+            </header>
 
-        <footer className="border-border text-muted-foreground border-t pt-8 text-center text-sm">
-          <p>
-            Smoke-test brand system — substituído pela Phase 2.{" "}
-            <span className="text-foreground font-medium">
-              Dra. Juliane Florentino — CRO/GO XXXXX
-            </span>{" "}
-            (CRO real será adicionado na Phase 3 antes do go-live).
-          </p>
-        </footer>
-      </div>
+            {/* 3x3 grid: variants x sizes */}
+            <div className="space-y-8">
+              {(["primary", "secondary", "ghost"] as const).map((variant) => (
+                <div key={variant} className="space-y-3">
+                  <h3 className="font-heading text-muted-foreground text-xs font-medium tracking-widest uppercase">
+                    variant: {variant}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Button variant={variant} size="sm">
+                      sm — {variant}
+                    </Button>
+                    <Button variant={variant} size="md">
+                      md — {variant}
+                    </Button>
+                    <Button variant={variant} size="lg">
+                      lg — {variant}
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* asChild proof — Button rendered as <a> for WhatsApp link */}
+            <div className="space-y-3">
+              <h3 className="font-heading text-muted-foreground text-xs font-medium tracking-widest uppercase">
+                asChild rendering as &lt;a&gt; (WhatsApp pattern)
+              </h3>
+              <Button asChild variant="primary" size="lg">
+                <a href="https://wa.me/5562000000000" target="_blank" rel="noopener noreferrer">
+                  Falar no WhatsApp →
+                </a>
+              </Button>
+            </div>
+
+            {/* Disabled proof */}
+            <div className="space-y-3">
+              <h3 className="font-heading text-muted-foreground text-xs font-medium tracking-widest uppercase">
+                Disabled
+              </h3>
+              <div className="flex flex-wrap items-center gap-4">
+                <Button variant="primary" disabled>
+                  primary disabled
+                </Button>
+                <Button variant="secondary" disabled>
+                  secondary disabled
+                </Button>
+                <Button variant="ghost" disabled>
+                  ghost disabled
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ====== Typography ladder (proves font-heading + font-body) ====== */}
+      <Section id="typography">
+        <Container>
+          <div className="mx-auto max-w-3xl space-y-6">
+            <h2 className="font-heading text-3xl font-semibold md:text-4xl">Tipografia</h2>
+            <p className="font-heading text-3xl font-semibold">Fraunces 600 — heading principal</p>
+            <p className="font-heading text-2xl font-medium">Fraunces 500 — subhead</p>
+            <p className="font-body text-base leading-relaxed">
+              Inter 400 — corpo de texto. Esta linha verifica que a body font carrega via next/font
+              sem flash visível ao recarregar.
+            </p>
+            <p className="font-body text-muted-foreground text-sm">
+              Inter 400 + muted-foreground — usado para microcopy e disclaimers.
+            </p>
+            <p className="font-body text-base">
+              Link inline:{" "}
+              <Link
+                href="#hero"
+                className="text-primary-strong font-medium underline underline-offset-4"
+              >
+                voltar ao topo
+              </Link>{" "}
+              (text-primary-strong, AA 5:1).
+            </p>
+          </div>
+        </Container>
+      </Section>
+
+      {/* ====== Footer placeholder (Phase 3 hardens with real CRO) ====== */}
+      <Section
+        as="div"
+        id="contato"
+        className="border-border bg-muted border-t py-10 md:py-12 lg:py-12"
+      >
+        <Container>
+          <div className="flex flex-col items-center gap-4 text-center md:flex-row md:justify-between md:text-left">
+            <Logo width={140} className="text-foreground" />
+            <p className="font-body text-muted-foreground text-xs">
+              <span className="text-foreground font-medium">
+                Dra. Juliane Florentino — CRO/GO XXXXX
+              </span>{" "}
+              · Goiânia, GO · CRO real será preenchido na Phase 3 antes do go-live.
+            </p>
+          </div>
+        </Container>
+      </Section>
     </main>
-  );
-}
-
-function Swatch({
-  label,
-  className,
-  textClass,
-}: {
-  label: string;
-  className: string;
-  textClass: string;
-}) {
-  return (
-    <div className={`${className} ${textClass} flex h-20 items-end rounded-md p-3`}>
-      <span className="font-body text-xs font-medium">{label}</span>
-    </div>
   );
 }
