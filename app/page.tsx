@@ -2,25 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Logo } from "@/components/brand";
-import { Container, Section } from "@/components/layout";
+import { Container } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
 /**
  * Landing page — Dra. Juliane Florentino
  *
- * Visual treatment refreshed to match the Denise Goulart dentist landing
- * reference: champagne-on-cream palette, Pinyon Script wordmark, polaroid-
- * style overlapping photos for treatment cards, pill buttons throughout.
+ * Mobile-first redesign. Hard rules:
+ *  - body copy ≥ text-lg (18px) on mobile, foreground (12.75:1)
+ *  - single column on mobile; 2-col only at lg: (1024px+)
+ *  - buttons h-14 + full-width on mobile
+ *  - no auto-animation, no marquee, no decorative blobs, no italic body
+ *  - user-controlled scroll-snap carousels (pure CSS)
  *
- * Public WhatsApp number is a deploy-blocker placeholder
- * (NEXT_PUBLIC_WHATSAPP_PHONE swap happens in Phase 3). CRO/GO XXXXX in the
- * footer is also a deploy-blocker (CFO 196/2019 mandates the registered CRO
- * number visible on every public-facing page).
- *
- * 7 vertical sections + sticky header + footer. Server component (no client
- * state). Smooth scroll anchors are wired via `scroll-behavior: smooth` in
- * globals.css.
+ * Public WhatsApp number is a deploy-blocker placeholder (NEXT_PUBLIC_WHATSAPP_PHONE
+ * swap happens in Phase 3). CRO/GO XXXXX in the footer is also a deploy-blocker
+ * (CFO 196/2019 mandates the registered CRO number visible on every public page).
  */
 
 const WHATSAPP_PHONE = "5562000000000"; // PLACEHOLDER — swap via NEXT_PUBLIC_WHATSAPP_PHONE in Phase 3
@@ -216,121 +214,27 @@ function DropletIcon({ className }: { className?: string }) {
 
 function StarRow() {
   return (
-    <div className="text-primary-strong flex gap-0.5" aria-label="5 estrelas">
+    <div className="text-primary-strong flex gap-1" aria-label="5 estrelas">
       {Array.from({ length: 5 }).map((_, i) => (
-        <StarIcon key={i} className="size-4" />
+        <StarIcon key={i} className="size-5" />
       ))}
     </div>
-  );
-}
-
-function TaglineChip({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-muted-foreground inline-flex items-center gap-3 text-xs font-medium tracking-[0.22em] uppercase">
-      <span className="bg-primary/50 inline-block h-px w-8" aria-hidden="true" />
-      <span>{children}</span>
-      <span className="bg-primary/50 inline-block h-px w-8" aria-hidden="true" />
-    </p>
   );
 }
 
 function BulletList({ items }: { items: readonly string[] }) {
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-4">
       {items.map((item) => (
-        <li key={item} className="flex gap-3">
+        <li key={item} className="flex gap-4">
           <span
             aria-hidden="true"
-            className="bg-primary-strong mt-2 inline-block size-2 shrink-0 rounded-full"
+            className="bg-primary-strong mt-3 inline-block size-2 shrink-0 rounded-full"
           />
-          <span className="text-foreground/90 text-sm leading-relaxed md:text-base">{item}</span>
+          <span className="text-foreground text-lg leading-relaxed">{item}</span>
         </li>
       ))}
     </ul>
-  );
-}
-
-/**
- * Client images come pre-composed as a single before/after frame (top=before,
- * bottom=after). We render them as a single Image and label below.
- */
-function StackedBeforeAfter({
-  src,
-  alt,
-  priority = false,
-  className,
-}: {
-  src: string;
-  alt: string;
-  priority?: boolean;
-  className?: string;
-}) {
-  return (
-    <figure className={className}>
-      <div className="border-border bg-muted relative aspect-[4/5] overflow-hidden rounded-3xl border shadow-sm">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 768px) 90vw, (max-width: 1024px) 33vw, 380px"
-          className="object-cover"
-          priority={priority}
-        />
-      </div>
-      <figcaption className="text-muted-foreground mt-3 text-center text-xs font-medium tracking-wider uppercase">
-        Antes <span className="text-border mx-1">/</span> Depois
-      </figcaption>
-    </figure>
-  );
-}
-
-/**
- * Polaroid-style stack of two images that overlap. Used by the treatment
- * cards. `mirrored` flips which image is on top (used to alternate the
- * left/right composition between rows).
- */
-function PolaroidStack({
-  primary,
-  secondary,
-  mirrored = false,
-}: {
-  primary: { src: string; alt: string };
-  secondary: { src: string; alt: string };
-  mirrored?: boolean;
-}) {
-  return (
-    <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
-      <div
-        className={
-          mirrored
-            ? "border-border bg-muted absolute top-0 left-0 h-[78%] w-[78%] overflow-hidden rounded-3xl border shadow-md"
-            : "border-border bg-muted absolute top-0 right-0 h-[78%] w-[78%] overflow-hidden rounded-3xl border shadow-md"
-        }
-      >
-        <Image
-          src={primary.src}
-          alt={primary.alt}
-          fill
-          sizes="(max-width: 768px) 70vw, 360px"
-          className="object-cover"
-        />
-      </div>
-      <div
-        className={
-          mirrored
-            ? "border-border bg-muted absolute right-0 bottom-0 h-[58%] w-[58%] overflow-hidden rounded-3xl border shadow-lg"
-            : "border-border bg-muted absolute bottom-0 left-0 h-[58%] w-[58%] overflow-hidden rounded-3xl border shadow-lg"
-        }
-      >
-        <Image
-          src={secondary.src}
-          alt={secondary.alt}
-          fill
-          sizes="(max-width: 768px) 50vw, 240px"
-          className="object-cover"
-        />
-      </div>
-    </div>
   );
 }
 
@@ -340,19 +244,18 @@ function PolaroidStack({
 
 function Header() {
   return (
-    <header className="bg-background-soft/95 sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-background-soft/85">
+    <header className="bg-background-soft/95 supports-[backdrop-filter]:bg-background-soft/85 sticky top-0 z-40 w-full backdrop-blur">
       <Container>
         <div className="flex h-16 items-center justify-between md:h-20">
           <Link href="#hero" aria-label="Início — Dra. Juliane Florentino" className="shrink-0">
-            <Logo size="md" className="text-primary-strong md:hidden" />
-            <Logo size="lg" className="text-primary-strong hidden md:inline-flex" />
+            <Logo size="sm" className="text-primary-strong md:hidden" />
+            <Logo size="md" className="text-primary-strong hidden md:inline-flex" />
           </Link>
 
           <Button asChild variant="primary" size="sm" className="md:h-12 md:px-6 md:text-base">
             <a href={wa(WA_MESSAGES.header)} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon className="size-4" />
-              <span className="hidden sm:inline">Agendar avaliação</span>
-              <span className="sm:hidden">Agendar</span>
+              <span>Agendar</span>
             </a>
           </Button>
         </div>
@@ -362,134 +265,61 @@ function Header() {
 }
 
 // ─────────────────────────────────────────────────────────
-// Section 1 — Hero (2-col with portrait + service strip)
+// Section 1 — Hero (single column on mobile, clean)
 // ─────────────────────────────────────────────────────────
-
-const HERO_SERVICES = [
-  { Icon: VeneerIcon, label: "Facetas em Resina e Porcelana" },
-  { Icon: ImplantIcon, label: "Implantes Dentários" },
-  { Icon: ProsthesisIcon, label: "Prótese Protocolo" },
-  { Icon: RehabIcon, label: "Reabilitação Oral Completa" },
-  { Icon: SparkleIcon, label: "Clareamento" },
-  { Icon: DropletIcon, label: "Limpeza e Manutenção" },
-] as const;
-
-const TRANSFORMATIONS = [
-  { src: "/images/hero-transformation-1.jpg", alt: "Transformação de sorriso — caso 1" },
-  { src: "/images/case-veneers-1.jpg", alt: "Facetas em porcelana — caso 2" },
-  { src: "/images/hero-smile-1.jpg", alt: "Sorriso natural após tratamento — caso 3" },
-  { src: "/images/case-veneers-2.jpg", alt: "Detalhe de facetas — caso 4" },
-  { src: "/images/case-implant-1.jpg", alt: "Reabilitação com implantes — caso 5" },
-  { src: "/images/hero-smile-2.jpg", alt: "Sorriso harmônico — caso 6" },
-  { src: "/images/smile-after-1.jpg", alt: "Resultado de reabilitação oral — caso 7" },
-  { src: "/images/smile-after-2.jpg", alt: "Estética dental — caso 8" },
-] as const;
-
-function TransformationsMarquee() {
-  // Duplicate the list so the marquee loops seamlessly when translateX hits -50%.
-  const items = [...TRANSFORMATIONS, ...TRANSFORMATIONS];
-  return (
-    <div className="relative">
-      {/* Edge fade masks so cards fade in/out smoothly at the container boundary */}
-      <div
-        aria-hidden="true"
-        className="from-background-soft pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r to-transparent md:w-20"
-      />
-      <div
-        aria-hidden="true"
-        className="from-background-soft pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l to-transparent md:w-20"
-      />
-
-      <div className="overflow-hidden">
-        <ul
-          className="animate-marquee flex w-max gap-4 [animation:marquee_45s_linear_infinite] hover:[animation-play-state:paused] md:gap-6"
-          aria-label="Transformações realizadas pela Dra. Juliane Florentino"
-        >
-          {items.map((item, i) => (
-            <li
-              key={`${item.src}-${i}`}
-              className="border-border bg-background relative aspect-[4/5] w-[220px] shrink-0 overflow-hidden rounded-3xl border shadow-sm md:w-[280px]"
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 768px) 220px, 280px"
-                className="object-cover"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <p className="text-muted-foreground mt-3 text-center text-xs italic md:mt-4 md:text-sm">
-        Resultados podem variar conforme cada caso.
-      </p>
-    </div>
-  );
-}
 
 function HeroSection() {
   return (
-    <section id="hero" className="bg-background-soft relative">
-      {/* Title block — full width above the carousel */}
+    <section
+      id="hero"
+      aria-labelledby="hero-title"
+      className="bg-background-soft py-12 md:py-20 lg:py-24"
+    >
       <Container>
-        <div className="space-y-6 pt-10 md:space-y-7 md:pt-14 lg:pt-20">
-          <TaglineChip>Especialista em prótese e reabilitação oral</TaglineChip>
-
-          <h1 className="font-heading text-foreground max-w-4xl text-4xl leading-[1.05] font-medium tracking-tight md:text-5xl lg:text-6xl">
-            Facetas, Implantes e Reabilitação Oral em Goiânia para você voltar a sorrir com
-            confiança
-          </h1>
-        </div>
-      </Container>
-
-      {/* Antes/Depois marquee — full bleed, right after title */}
-      <div className="mt-8 md:mt-12 lg:mt-16">
-        <TransformationsMarquee />
-      </div>
-
-      {/* Subtitle + CTA + portrait — 2 columns on desktop, stacked on mobile */}
-      <Container>
-        <div className="mt-10 grid grid-cols-1 items-center gap-10 pb-24 md:mt-14 md:grid-cols-2 md:gap-12 md:pb-32 lg:gap-16 lg:pb-40">
-          <div className="space-y-5 md:order-1 md:space-y-6">
-            <p className="text-muted-foreground max-w-xl text-base leading-relaxed md:text-lg">
-              A Dra. Juliane Florentino é especialista em prótese dental e reabilitação oral.
-            </p>
-            <p className="text-muted-foreground max-w-xl text-base leading-relaxed md:text-lg">
-              Tratamentos personalizados para você voltar a sorrir com confiança.
-            </p>
-            <p className="text-foreground/80 max-w-xl text-sm leading-relaxed italic md:text-base">
-              Vergonha de sorrir, evita fotos ou perdeu dentes? Existe um caminho planejado para
-              recuperar sua autoestima.
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 text-center lg:max-w-6xl lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 lg:text-left">
+          <div className="flex w-full flex-col items-center gap-6 lg:order-1 lg:items-start lg:gap-8">
+            <p className="text-muted-foreground text-sm font-medium tracking-[0.2em] uppercase">
+              Dentista em Goiânia
             </p>
 
-            <div className="pt-2">
-              <Button asChild variant="primary" size="lg">
+            <h1
+              id="hero-title"
+              className="font-heading text-foreground text-[2rem] leading-[1.1] font-medium tracking-tight lg:text-5xl"
+            >
+              Sorrir com confiança em Goiânia
+            </h1>
+
+            <p className="text-foreground max-w-prose text-lg leading-relaxed lg:text-xl">
+              Facetas, implantes, próteses e reabilitação oral com planejamento personalizado pela
+              Dra. Juliane Florentino.
+            </p>
+
+            <div className="w-full pt-2 sm:w-auto">
+              <Button
+                asChild
+                variant="primary"
+                size="lg"
+                className="h-14 w-full sm:w-auto"
+              >
                 <a href={wa(WA_MESSAGES.hero)} target="_blank" rel="noopener noreferrer">
                   <WhatsAppIcon className="size-5" />
                   Agendar avaliação pelo WhatsApp
                 </a>
               </Button>
             </div>
+
+            <p className="text-muted-foreground text-sm">
+              Atendimento humanizado · Goiânia, GO
+            </p>
           </div>
 
-          <div className="relative flex items-center justify-center md:order-2">
-            <div
-              aria-hidden="true"
-              className="bg-primary/15 absolute inset-0 -z-0 mx-auto h-full w-[88%] rounded-[40%_60%_55%_45%/55%_45%_60%_40%] blur-[2px]"
-            />
-            <div
-              aria-hidden="true"
-              className="bg-primary/20 absolute top-6 right-2 -z-0 size-12 rounded-full md:size-16"
-            />
-
-            <div className="border-border relative z-10 aspect-[4/5] w-full max-w-md overflow-hidden rounded-[2.5rem] border shadow-lg">
+          <div className="w-full max-w-md lg:order-2 lg:max-w-none">
+            <div className="border-border bg-muted relative aspect-[4/5] w-full overflow-hidden rounded-3xl border shadow-md">
               <Image
                 src="/images/dra-juliane-portrait.jpg"
                 alt="Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
                 fill
-                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 480px"
+                sizes="(max-width: 1024px) 90vw, 480px"
                 className="object-cover"
                 priority
               />
@@ -497,20 +327,166 @@ function HeroSection() {
           </div>
         </div>
       </Container>
+    </section>
+  );
+}
 
-      {/* Service strip — floats over the hero/content boundary */}
+// ─────────────────────────────────────────────────────────
+// Section 1b — Service strip (own section, no card wrapper)
+// ─────────────────────────────────────────────────────────
+
+const HERO_SERVICES = [
+  { Icon: VeneerIcon, label: "Facetas" },
+  { Icon: ImplantIcon, label: "Implantes" },
+  { Icon: ProsthesisIcon, label: "Prótese Protocolo" },
+  { Icon: RehabIcon, label: "Reabilitação Oral" },
+  { Icon: SparkleIcon, label: "Clareamento" },
+  { Icon: DropletIcon, label: "Limpeza" },
+] as const;
+
+function ServicesStripSection() {
+  return (
+    <section
+      aria-labelledby="services-title"
+      className="bg-background py-12 md:py-16"
+    >
       <Container>
-        <div className="bg-background border-border relative z-10 -mt-16 rounded-3xl border p-6 shadow-lg shadow-foreground/5 md:-mt-20 md:p-10">
-          <ul className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-            {HERO_SERVICES.map(({ Icon, label }) => (
-              <li key={label} className="flex items-center gap-3">
-                <span className="bg-primary/15 text-primary-strong inline-flex size-10 shrink-0 items-center justify-center rounded-xl">
-                  <Icon className="size-5" />
-                </span>
-                <span className="text-foreground text-sm font-medium md:text-base">{label}</span>
-              </li>
-            ))}
-          </ul>
+        <h2
+          id="services-title"
+          className="font-heading text-foreground text-center text-2xl font-medium tracking-tight lg:text-3xl"
+        >
+          O que a Dra. Juliane atende
+        </h2>
+
+        <ul className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-x-4 gap-y-8 lg:max-w-5xl lg:grid-cols-3 lg:gap-x-8">
+          {HERO_SERVICES.map(({ Icon, label }) => (
+            <li
+              key={label}
+              className="flex flex-col items-center gap-3 text-center lg:flex-row lg:gap-4 lg:text-left"
+            >
+              <span className="bg-primary/15 text-primary-strong inline-flex size-14 shrink-0 items-center justify-center rounded-2xl">
+                <Icon className="size-7" />
+              </span>
+              <span className="text-foreground text-base font-medium lg:text-lg">{label}</span>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────
+// Section 2 — Antes/Depois (user-controlled scroll-snap)
+// ─────────────────────────────────────────────────────────
+
+const TRANSFORMATIONS = [
+  {
+    src: "/images/case-veneers-1.jpg",
+    alt: "Caso 1 — facetas dentárias para harmonização do sorriso",
+    label: "Caso 1 · Facetas dentárias",
+  },
+  {
+    src: "/images/case-veneers-2.jpg",
+    alt: "Caso 2 — facetas em porcelana para clareamento e formato",
+    label: "Caso 2 · Facetas em porcelana",
+  },
+  {
+    src: "/images/case-implant-1.jpg",
+    alt: "Caso 3 — implante dentário com coroa estética",
+    label: "Caso 3 · Implante dentário",
+  },
+  {
+    src: "/images/hero-transformation-1.jpg",
+    alt: "Caso 4 — reabilitação oral completa com mudança de autoestima",
+    label: "Caso 4 · Reabilitação completa",
+  },
+  {
+    src: "/images/hero-smile-1.jpg",
+    alt: "Caso 5 — sorriso natural após tratamento estético",
+    label: "Caso 5 · Sorriso natural",
+  },
+  {
+    src: "/images/smile-after-1.jpg",
+    alt: "Caso 6 — resultado de reabilitação oral",
+    label: "Caso 6 · Reabilitação",
+  },
+] as const;
+
+function AntesDepoisSection() {
+  return (
+    <section
+      id="antes-depois"
+      aria-labelledby="antes-depois-title"
+      className="bg-background py-16 md:py-24"
+    >
+      <Container>
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <h2
+            id="antes-depois-title"
+            className="font-heading text-foreground text-2xl font-medium tracking-tight lg:text-4xl"
+          >
+            Resultados que devolvem a confiança
+          </h2>
+          <p className="text-foreground text-lg leading-relaxed">
+            Cada caso é planejado de forma individual para unir estética, função e naturalidade.
+          </p>
+        </div>
+      </Container>
+
+      {/* Full-bleed scroll-snap carousel — user controls the motion. */}
+      <div
+        className="mt-10 overflow-x-auto md:mt-14"
+        role="region"
+        aria-label="Transformações realizadas pela Dra. Juliane Florentino"
+        tabIndex={0}
+      >
+        <ul className="flex snap-x snap-mandatory gap-4 px-4 pb-4 lg:gap-6 lg:px-8">
+          {TRANSFORMATIONS.map((item) => (
+            <li
+              key={item.src}
+              className="snap-center shrink-0 basis-[85%] sm:basis-[60%] lg:basis-[32%]"
+            >
+              <figure className="space-y-3">
+                <div className="border-border bg-muted relative aspect-[4/5] w-full overflow-hidden rounded-3xl border shadow-sm">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 60vw, 32vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="text-muted-foreground text-center text-sm font-medium">
+                  {item.label}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <Container>
+        <p className="text-muted-foreground mt-2 text-center text-sm lg:hidden">
+          Arraste para ver mais
+        </p>
+
+        <p className="text-muted-foreground mx-auto mt-8 max-w-2xl text-center text-sm italic">
+          Resultados podem variar conforme cada caso. Cada tratamento é planejado individualmente.
+        </p>
+
+        <div className="mt-10 flex justify-center">
+          <Button
+            asChild
+            variant="primary"
+            size="lg"
+            className="h-14 w-full sm:w-auto"
+          >
+            <a href={wa(WA_MESSAGES.gallery)} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon className="size-5" />
+              Quero transformar meu sorriso
+            </a>
+          </Button>
         </div>
       </Container>
     </section>
@@ -518,7 +494,7 @@ function HeroSection() {
 }
 
 // ─────────────────────────────────────────────────────────
-// Section 2 — Depoimentos
+// Section 3 — Depoimentos (scroll-snap on mobile, grid on lg+)
 // ─────────────────────────────────────────────────────────
 
 const TESTIMONIALS = [
@@ -546,139 +522,81 @@ const TESTIMONIALS = [
 
 function DepoimentosSection() {
   return (
-    <Section id="depoimentos" className="bg-background pt-24 md:pt-32 lg:pt-40">
+    <section
+      id="depoimentos"
+      aria-labelledby="depoimentos-title"
+      className="bg-background-soft py-16 md:py-24"
+    >
       <Container>
-        <div className="mx-auto max-w-3xl space-y-4 text-center">
-          <TaglineChip>Depoimentos</TaglineChip>
-          <h2 className="font-heading text-foreground text-3xl font-medium tracking-tight md:text-4xl lg:text-5xl">
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <h2
+            id="depoimentos-title"
+            className="font-heading text-foreground text-2xl font-medium tracking-tight lg:text-4xl"
+          >
             Pacientes que voltaram a sorrir com segurança
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg">
+          <p className="text-foreground text-lg leading-relaxed">
             A experiência de quem confiou seu sorriso à Dra. Juliane Florentino.
           </p>
         </div>
+      </Container>
 
-        <ul className="mt-12 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
+      {/* Carousel on mobile, grid on lg+. */}
+      <div
+        className="mt-10 overflow-x-auto md:mt-14 lg:overflow-visible"
+        role="region"
+        aria-label="Depoimentos de pacientes"
+        tabIndex={0}
+      >
+        <ul className="flex snap-x snap-mandatory gap-4 px-4 pb-4 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-6 lg:px-8 lg:pb-0 xl:grid-cols-4">
           {TESTIMONIALS.map((t) => (
             <li
               key={t.name}
-              className="border-border bg-background-soft flex flex-col gap-4 rounded-3xl border p-6 shadow-sm shadow-foreground/5 md:p-7"
+              className="snap-center shrink-0 basis-[85%] sm:basis-[60%] lg:basis-auto"
             >
-              <StarRow />
-              <blockquote className="text-foreground/90 text-base leading-relaxed">
-                <p>&ldquo;{t.quote}&rdquo;</p>
-              </blockquote>
-              <div className="border-border/70 mt-auto border-t pt-4">
-                <p className="font-heading text-foreground text-base font-medium">{t.name}</p>
-                <p className="text-muted-foreground mt-0.5 text-xs">Avaliação Google</p>
-              </div>
+              <article className="border-border bg-background flex h-full flex-col gap-5 rounded-3xl border p-6 shadow-sm">
+                <StarRow />
+                <blockquote className="text-foreground text-lg leading-relaxed">
+                  <p>&ldquo;{t.quote}&rdquo;</p>
+                </blockquote>
+                <div className="border-border/70 mt-auto border-t pt-4">
+                  <p className="font-heading text-foreground text-lg font-medium">{t.name}</p>
+                  <p className="text-muted-foreground mt-1 text-sm">Avaliação Google</p>
+                </div>
+              </article>
             </li>
           ))}
         </ul>
+      </div>
 
-        <div className="mt-12 flex flex-col items-center gap-6 text-center">
+      <Container>
+        <p className="text-muted-foreground mt-2 text-center text-sm lg:hidden">
+          Arraste para ver mais
+        </p>
+
+        <div className="mt-10 flex flex-col items-center gap-6 text-center md:mt-12">
           <a
             href="https://share.google/nNeXUPmxMvu0v8a6y"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-primary-strong text-sm underline underline-offset-4 transition-colors"
+            className="text-foreground hover:text-primary-strong text-base underline underline-offset-4 transition-colors"
           >
-            Ver mais avaliações no Google →
+            Ver mais avaliações no Google
           </a>
-          <Button asChild variant="primary" size="md">
+          <Button
+            asChild
+            variant="primary"
+            size="lg"
+            className="h-14 w-full sm:w-auto"
+          >
             <a href={wa(WA_MESSAGES.social)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="size-4" />
+              <WhatsAppIcon className="size-5" />
               Agendar minha avaliação
             </a>
           </Button>
         </div>
       </Container>
-    </Section>
-  );
-}
-
-// ─────────────────────────────────────────────────────────
-// Section 3 — Antes e Depois
-// ─────────────────────────────────────────────────────────
-
-function GallerySection() {
-  return (
-    <Section id="antes-depois" className="bg-background-soft">
-      <Container>
-        <div className="mx-auto max-w-3xl space-y-4 text-center">
-          <TaglineChip>Antes &amp; Depois</TaglineChip>
-          <h2 className="font-heading text-foreground text-3xl font-medium tracking-tight md:text-4xl lg:text-5xl">
-            Transformações que devolvem mais do que um sorriso
-          </h2>
-          <p className="text-muted-foreground text-base md:text-lg">
-            Cada caso é planejado de forma individual para unir estética, função e naturalidade.
-          </p>
-        </div>
-
-        <p className="text-foreground/85 mx-auto mt-6 max-w-3xl text-center text-base leading-relaxed md:text-lg">
-          A reabilitação oral pode transformar a forma como você sorri, mastiga, conversa e se
-          enxerga no espelho. Com facetas, implantes, próteses e planejamento personalizado, a Dra.
-          Juliane busca resultados naturais, respeitando a harmonia do rosto e a necessidade de
-          cada paciente.
-        </p>
-
-        <div className="mt-14 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-          <article className="space-y-3">
-            <StackedBeforeAfter
-              src="/images/case-veneers-1.jpg"
-              alt="Caso 1 — facetas dentárias para harmonização do sorriso"
-            />
-            <p className="text-muted-foreground text-center text-xs">
-              Caso 1 · Facetas dentárias
-            </p>
-          </article>
-
-          <article className="space-y-3">
-            <StackedBeforeAfter
-              src="/images/case-veneers-2.jpg"
-              alt="Caso 2 — facetas em porcelana para clareamento e formato"
-            />
-            <p className="text-muted-foreground text-center text-xs">
-              Caso 2 · Facetas em porcelana
-            </p>
-          </article>
-
-          <article className="space-y-3">
-            <StackedBeforeAfter
-              src="/images/case-implant-1.jpg"
-              alt="Caso 3 — implante dentário com coroa estética"
-            />
-            <p className="text-muted-foreground text-center text-xs">
-              Caso 3 · Implante dentário
-            </p>
-          </article>
-
-          <article className="space-y-3">
-            <StackedBeforeAfter
-              src="/images/hero-transformation-1.jpg"
-              alt="Caso 4 — reabilitação oral completa com mudança de autoestima"
-            />
-            <p className="text-muted-foreground text-center text-xs">
-              Caso 4 · Reabilitação completa
-            </p>
-          </article>
-        </div>
-
-        <p className="text-muted-foreground mx-auto mt-8 max-w-2xl text-center text-xs italic">
-          *Resultados podem variar conforme cada caso. Cada tratamento é planejado
-          individualmente.
-        </p>
-
-        <div className="mt-12 flex justify-center">
-          <Button asChild variant="primary" size="lg">
-            <a href={wa(WA_MESSAGES.gallery)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="size-5" />
-              Quero transformar meu sorriso
-            </a>
-          </Button>
-        </div>
-      </Container>
-    </Section>
+    </section>
   );
 }
 
@@ -686,46 +604,59 @@ function GallerySection() {
 // Section 4 — Story / Problema
 // ─────────────────────────────────────────────────────────
 
-function StorySection() {
+function ProblemaSection() {
   return (
-    <Section id="problema" className="bg-background">
+    <section
+      id="problema"
+      aria-labelledby="problema-title"
+      className="bg-background py-16 md:py-24"
+    >
       <Container>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <TaglineChip>Você se reconhece?</TaglineChip>
-            <h2 className="font-heading text-foreground mt-4 text-3xl font-medium tracking-tight md:text-4xl lg:text-5xl">
+        <div className="mx-auto max-w-3xl space-y-8 lg:max-w-6xl lg:grid lg:grid-cols-12 lg:gap-16 lg:space-y-0">
+          <div className="space-y-8 lg:col-span-7 lg:space-y-10">
+            <h2
+              id="problema-title"
+              className="font-heading text-foreground text-2xl leading-tight font-medium tracking-tight lg:text-4xl"
+            >
               Talvez o seu sorriso esteja impedindo você de viver com mais confiança
             </h2>
 
-            <div className="text-foreground/85 mt-8 space-y-5 text-base leading-relaxed md:text-lg">
+            <div className="text-foreground space-y-6 text-lg leading-loose">
               <p>
                 Muitas pessoas passam anos escondendo o sorriso, evitando fotos ou convivendo com
                 dentes ausentes, desgastados, escurecidos ou próteses desconfortáveis.
               </p>
-              <p className="text-foreground font-medium">E isso não afeta apenas a estética.</p>
-              <BulletList
-                items={[
-                  "Afeta a autoestima.",
-                  "Afeta a segurança para conversar.",
-                  "Afeta a mastigação.",
-                  "Afeta a forma como você se vê.",
-                ]}
-              />
-              <p>
-                O problema é que, quanto mais você adia, mais distante parece ficar o sorriso que
-                você deseja ter.
-              </p>
+              <p className="font-medium">E isso não afeta apenas a estética.</p>
             </div>
 
-            <blockquote className="border-primary-strong mt-10 border-l-4 pl-6 md:pl-8">
-              <p className="font-heading text-foreground text-xl leading-snug font-medium md:text-2xl">
+            <BulletList
+              items={[
+                "Afeta a autoestima.",
+                "Afeta a segurança para conversar.",
+                "Afeta a mastigação.",
+                "Afeta a forma como você se vê.",
+              ]}
+            />
+
+            <p className="text-foreground text-lg leading-relaxed">
+              O problema é que, quanto mais você adia, mais distante parece ficar o sorriso que
+              você deseja ter.
+            </p>
+
+            <blockquote className="border-primary-strong border-l-4 pl-6 lg:pl-8">
+              <p className="font-heading text-foreground text-xl leading-snug font-medium lg:text-2xl">
                 Mas com um planejamento correto, é possível encontrar o melhor caminho para
                 recuperar estética, função e confiança.
               </p>
             </blockquote>
 
-            <div className="mt-10">
-              <Button asChild variant="primary" size="lg">
+            <div className="pt-2">
+              <Button
+                asChild
+                variant="primary"
+                size="lg"
+                className="h-14 w-full sm:w-auto"
+              >
                 <a href={wa(WA_MESSAGES.story)} target="_blank" rel="noopener noreferrer">
                   <WhatsAppIcon className="size-5" />
                   Quero entender meu caso
@@ -735,42 +666,35 @@ function StorySection() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-md">
-              <div
-                aria-hidden="true"
-                className="bg-primary/15 absolute inset-0 -z-0 rounded-[40%_60%_55%_45%/55%_45%_60%_40%]"
+            <div className="border-border bg-muted relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-3xl border shadow-md lg:max-w-none">
+              <Image
+                src="/images/clinic-office.jpg"
+                alt="Consultório da Dra. Juliane Florentino em Goiânia"
+                fill
+                sizes="(max-width: 1024px) 90vw, 480px"
+                className="object-cover"
               />
-              <div className="border-border relative z-10 h-full w-full overflow-hidden rounded-3xl border shadow-md">
-                <Image
-                  src="/images/clinic-office.jpg"
-                  alt="Consultório da Dra. Juliane Florentino em Goiânia"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 480px"
-                  className="object-cover"
-                />
-              </div>
             </div>
           </div>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }
 
 // ─────────────────────────────────────────────────────────
-// Section 5 — Tratamentos (alternating polaroid rows)
+// Section 5 — Tratamentos (clean cards, single photo each)
 // ─────────────────────────────────────────────────────────
 
-type TreatmentRow = {
+type TreatmentCard = {
   Icon: (props: { className?: string }) => React.ReactElement;
   title: string;
   description: string;
   bullets: readonly string[];
-  primary: { src: string; alt: string };
-  secondary: { src: string; alt: string };
+  image: { src: string; alt: string };
 };
 
-const TREATMENTS: readonly TreatmentRow[] = [
+const TREATMENTS: readonly TreatmentCard[] = [
   {
     Icon: VeneerIcon,
     title: "Facetas: o sorriso perfeito ao seu alcance",
@@ -781,13 +705,9 @@ const TREATMENTS: readonly TreatmentRow[] = [
       "Facetas em porcelana (resultado premium)",
       "Planejamento digital prévio do sorriso",
     ],
-    primary: {
+    image: {
       src: "/images/case-veneers-1.jpg",
       alt: "Caso de facetas dentárias",
-    },
-    secondary: {
-      src: "/images/case-veneers-2.jpg",
-      alt: "Detalhe de facetas em porcelana",
     },
   },
   {
@@ -800,13 +720,9 @@ const TREATMENTS: readonly TreatmentRow[] = [
       "Coroas com estética natural",
       "Avaliação prévia de saúde óssea",
     ],
-    primary: {
+    image: {
       src: "/images/case-implant-1.jpg",
       alt: "Caso de implante dentário",
-    },
-    secondary: {
-      src: "/images/clinic-chair.jpg",
-      alt: "Cadeira do consultório",
     },
   },
   {
@@ -819,13 +735,9 @@ const TREATMENTS: readonly TreatmentRow[] = [
       "Próteses fixas e removíveis",
       "Adaptação personalizada e acompanhamento",
     ],
-    primary: {
+    image: {
       src: "/images/smile-after-1.jpg",
       alt: "Sorriso reabilitado com prótese",
-    },
-    secondary: {
-      src: "/images/hero-smile-1.jpg",
-      alt: "Detalhe do sorriso final",
     },
   },
   {
@@ -838,77 +750,71 @@ const TREATMENTS: readonly TreatmentRow[] = [
       "Foco em harmonia facial e mastigação",
       "Acompanhamento de longo prazo",
     ],
-    primary: {
+    image: {
       src: "/images/hero-transformation-1.jpg",
       alt: "Transformação completa do sorriso",
-    },
-    secondary: {
-      src: "/images/smile-after-2.jpg",
-      alt: "Resultado final da reabilitação",
     },
   },
 ];
 
-function TreatmentsSection() {
+function TratamentosSection() {
   return (
-    <Section id="tratamentos" className="bg-background-soft">
+    <section
+      id="tratamentos"
+      aria-labelledby="tratamentos-title"
+      className="bg-background-soft py-16 md:py-24"
+    >
       <Container>
-        <div className="mx-auto max-w-3xl space-y-4 text-center">
-          <TaglineChip>Tratamentos personalizados</TaglineChip>
-          <h2 className="font-heading text-foreground text-3xl font-medium tracking-tight md:text-4xl lg:text-5xl">
-            Conheça os tratamentos personalizados para devolver seu sorriso
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <h2
+            id="tratamentos-title"
+            className="font-heading text-foreground text-2xl font-medium tracking-tight lg:text-4xl"
+          >
+            Tratamentos personalizados para devolver seu sorriso
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg">
+          <p className="text-foreground text-lg leading-relaxed">
             A Dra. Juliane atua em diferentes áreas da odontologia estética e reabilitação oral.
           </p>
         </div>
 
-        <ul className="mt-16 space-y-20 md:space-y-28">
-          {TREATMENTS.map(({ Icon, title, description, bullets, primary, secondary }, index) => {
-            const isMirrored = index % 2 === 1;
-            return (
-              <li key={title}>
-                <article
-                  className={
-                    isMirrored
-                      ? "grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14"
-                      : "grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14"
-                  }
-                >
-                  <div className={isMirrored ? "md:order-2" : "md:order-1"}>
-                    <div className="bg-primary text-primary-foreground inline-flex items-center gap-3 rounded-2xl px-5 py-3">
-                      <span className="bg-primary-foreground/20 flex size-8 items-center justify-center rounded-lg">
-                        <Icon className="size-5" />
-                      </span>
-                      <h3 className="font-heading text-base leading-tight font-medium md:text-lg">
-                        {title}
-                      </h3>
-                    </div>
+        <ul className="mt-12 grid grid-cols-1 gap-6 lg:mt-16 lg:grid-cols-2 lg:gap-8">
+          {TREATMENTS.map(({ Icon, title, description, bullets, image }) => (
+            <li key={title}>
+              <article className="border-border bg-background flex h-full flex-col gap-6 rounded-3xl border p-6 shadow-sm lg:p-8">
+                <div className="border-border bg-muted relative aspect-[4/3] w-full overflow-hidden rounded-2xl border">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 1024px) 90vw, 540px"
+                    className="object-cover"
+                  />
+                </div>
 
-                    <p className="text-muted-foreground mt-6 text-base leading-relaxed md:text-lg">
-                      {description}
-                    </p>
+                <div className="bg-primary text-primary-foreground inline-flex items-center gap-3 self-start rounded-2xl px-4 py-2">
+                  <Icon className="size-5" />
+                  <span className="text-base font-medium">Tratamento</span>
+                </div>
 
-                    <div className="mt-6">
-                      <BulletList items={bullets} />
-                    </div>
-                  </div>
+                <h3 className="font-heading text-foreground text-xl leading-tight font-medium lg:text-2xl">
+                  {title}
+                </h3>
 
-                  <div className={isMirrored ? "md:order-1" : "md:order-2"}>
-                    <PolaroidStack
-                      primary={primary}
-                      secondary={secondary}
-                      mirrored={isMirrored}
-                    />
-                  </div>
-                </article>
-              </li>
-            );
-          })}
+                <p className="text-foreground text-lg leading-relaxed">{description}</p>
+
+                <BulletList items={bullets} />
+              </article>
+            </li>
+          ))}
         </ul>
 
-        <div className="mt-16 flex justify-center">
-          <Button asChild variant="primary" size="lg">
+        <div className="mt-12 flex justify-center lg:mt-16">
+          <Button
+            asChild
+            variant="primary"
+            size="lg"
+            className="h-14 w-full sm:w-auto"
+          >
             <a href={wa(WA_MESSAGES.treatments)} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon className="size-5" />
               Falar com a equipe pelo WhatsApp
@@ -916,7 +822,7 @@ function TreatmentsSection() {
           </Button>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }
 
@@ -933,40 +839,36 @@ const DIFERENCIAIS = [
   "Atendimento premium em Goiânia",
 ] as const;
 
-function AuthoritySection() {
+function SobreSection() {
   return (
-    <Section id="sobre" className="bg-background">
+    <section
+      id="sobre"
+      aria-labelledby="sobre-title"
+      className="bg-background py-16 md:py-24"
+    >
       <Container>
-        <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
-          <div className="md:col-span-5 lg:col-span-5">
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-md">
-              <div
-                aria-hidden="true"
-                className="bg-primary/15 absolute inset-0 -z-0 rounded-[40%_60%_55%_45%/55%_45%_60%_40%]"
+        <div className="mx-auto flex max-w-3xl flex-col gap-10 lg:max-w-6xl lg:grid lg:grid-cols-12 lg:items-start lg:gap-16">
+          <div className="lg:col-span-5 lg:order-1">
+            <div className="border-border bg-muted relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-3xl border shadow-md lg:max-w-none">
+              <Image
+                src="/images/dra-juliane-portrait-alt.jpg"
+                alt="Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
+                fill
+                sizes="(max-width: 1024px) 90vw, 440px"
+                className="object-cover"
               />
-              <div
-                aria-hidden="true"
-                className="bg-primary/20 absolute -bottom-4 -left-4 -z-0 size-20 rounded-full md:size-24"
-              />
-              <div className="border-border relative z-10 h-full w-full overflow-hidden rounded-[2.5rem] border shadow-md">
-                <Image
-                  src="/images/dra-juliane-portrait-alt.jpg"
-                  alt="Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
-                  fill
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 40vw, 480px"
-                  className="object-cover"
-                />
-              </div>
             </div>
           </div>
 
-          <div className="md:col-span-7 lg:col-span-7">
-            <TaglineChip>Sobre a Dra. Juliane</TaglineChip>
-            <h2 className="font-heading text-foreground mt-4 text-3xl font-medium tracking-tight md:text-4xl lg:text-5xl">
+          <div className="space-y-8 lg:col-span-7 lg:order-2">
+            <h2
+              id="sobre-title"
+              className="font-heading text-foreground text-2xl leading-tight font-medium tracking-tight lg:text-4xl"
+            >
               Conheça a especialista que vai guiar a transformação do seu sorriso
             </h2>
 
-            <div className="text-foreground/85 mt-6 space-y-4 text-base leading-relaxed md:text-lg">
+            <div className="text-foreground space-y-6 text-lg leading-relaxed">
               <p>
                 A Dra. Juliane Florentino é dentista especialista em prótese dental e reabilitação
                 oral, com foco em tratamentos estéticos e funcionais para pacientes que desejam
@@ -982,22 +884,27 @@ function AuthoritySection() {
               </p>
             </div>
 
-            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {DIFERENCIAIS.map((d) => (
                 <li key={d} className="flex items-start gap-3">
                   <span
-                    className="bg-primary/15 text-primary-strong mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-full"
+                    className="bg-primary/15 text-primary-strong mt-1 inline-flex size-7 shrink-0 items-center justify-center rounded-full"
                     aria-hidden="true"
                   >
-                    <CheckIcon className="size-3.5" />
+                    <CheckIcon className="size-4" />
                   </span>
-                  <span className="text-foreground/85 text-sm md:text-base">{d}</span>
+                  <span className="text-foreground text-lg leading-relaxed">{d}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10">
-              <Button asChild variant="primary" size="lg">
+            <div className="pt-2">
+              <Button
+                asChild
+                variant="primary"
+                size="lg"
+                className="h-14 w-full sm:w-auto"
+              >
                 <a href={wa(WA_MESSAGES.authority)} target="_blank" rel="noopener noreferrer">
                   <WhatsAppIcon className="size-5" />
                   Quero ser avaliado pela Dra. Juliane
@@ -1007,7 +914,7 @@ function AuthoritySection() {
           </div>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }
 
@@ -1015,49 +922,58 @@ function AuthoritySection() {
 // Section 7 — Final CTA + Localização
 // ─────────────────────────────────────────────────────────
 
-function FinalCtaSection() {
+function ContatoSection() {
   return (
-    <Section id="contato" className="bg-background-soft">
+    <section
+      id="contato"
+      aria-labelledby="contato-title"
+      className="bg-background-soft py-16 md:py-24"
+    >
       <Container>
-        <div className="mx-auto max-w-3xl space-y-4 text-center">
-          <TaglineChip>Comece hoje</TaglineChip>
-          <h2 className="font-heading text-foreground text-3xl font-medium tracking-tight md:text-4xl lg:text-5xl">
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <h2
+            id="contato-title"
+            className="font-heading text-foreground text-2xl font-medium tracking-tight lg:text-4xl"
+          >
             Seu novo sorriso começa com uma avaliação
           </h2>
+
+          <div className="text-foreground space-y-6 text-lg leading-relaxed">
+            <p>
+              Você não precisa continuar escondendo o sorriso, evitando fotos ou convivendo com
+              insegurança.
+            </p>
+            <p>
+              A Dra. Juliane Florentino pode te ajudar a entender qual tratamento faz mais sentido
+              para o seu caso, seja com facetas, implantes, próteses ou reabilitação oral completa.
+            </p>
+            <p className="font-medium">O primeiro passo é simples: agendar uma avaliação.</p>
+          </div>
+
+          <div className="pt-4">
+            <Button
+              asChild
+              variant="primary"
+              size="lg"
+              className="h-14 w-full sm:w-auto"
+            >
+              <a href={wa(WA_MESSAGES.finalCta)} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="size-5" />
+                Agendar avaliação pelo WhatsApp
+              </a>
+            </Button>
+          </div>
         </div>
 
-        <div className="text-foreground/85 mx-auto mt-6 max-w-3xl space-y-4 text-center text-base leading-relaxed md:text-lg">
-          <p>
-            Você não precisa continuar escondendo o sorriso, evitando fotos ou convivendo com
-            insegurança.
-          </p>
-          <p>
-            A Dra. Juliane Florentino pode te ajudar a entender qual tratamento faz mais sentido
-            para o seu caso, seja com facetas, implantes, próteses ou reabilitação oral completa.
-          </p>
-          <p className="text-foreground font-medium">
-            O primeiro passo é simples: agendar uma avaliação.
-          </p>
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <Button asChild variant="primary" size="lg">
-            <a href={wa(WA_MESSAGES.finalCta)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="size-5" />
-              Agendar avaliação pelo WhatsApp
-            </a>
-          </Button>
-        </div>
-
-        <div className="border-border/60 mx-auto mt-20 max-w-5xl border-t pt-16 md:mt-24 md:pt-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <h3 className="font-heading text-foreground text-2xl font-medium tracking-tight md:text-3xl">
+        <div className="border-border/60 mx-auto mt-16 max-w-5xl border-t pt-16 md:mt-20 md:pt-20">
+          <div className="mx-auto max-w-3xl space-y-6 text-center">
+            <h3 className="font-heading text-foreground text-xl font-medium tracking-tight lg:text-2xl">
               Atendimento em Goiânia para pacientes de todo o Brasil
             </h3>
-            <p className="text-muted-foreground mt-4 text-base md:text-lg">
+            <p className="text-foreground text-lg leading-relaxed">
               A clínica da Dra. Juliane Florentino está localizada em Goiânia e recebe pacientes
-              que buscam um atendimento premium em reabilitação oral, facetas, implantes
-              dentários e estética dental.
+              que buscam atendimento premium em reabilitação oral, facetas, implantes e estética
+              dental.
             </p>
           </div>
 
@@ -1075,12 +991,12 @@ function FinalCtaSection() {
             />
           </div>
 
-          <p className="text-muted-foreground mt-4 text-center text-xs italic">
-            *Endereço completo será confirmado no contato pelo WhatsApp.
+          <p className="text-muted-foreground mt-4 text-center text-sm italic">
+            Endereço completo será confirmado no contato pelo WhatsApp.
           </p>
         </div>
       </Container>
-    </Section>
+    </section>
   );
 }
 
@@ -1093,27 +1009,26 @@ function Footer() {
     COMPLIANCE NOTE: CFO Resolution 196/2019 mandates the dentist's full name +
     CRO/UF + number to appear on every public-facing page. "CRO/GO XXXXX" is a
     DEPLOY-BLOCKER placeholder — must be swapped for the real number before
-    go-live. The disclaimer "Resultados podem variar conforme cada caso" already
-    appears beside the antes/depois blocks (see HeroSection + GallerySection).
+    go-live.
   */
   return (
     <footer className="bg-foreground text-background w-full rounded-t-3xl">
       <Container>
-        <div className="flex flex-col gap-10 py-14 md:py-20">
-          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-12 py-14 md:py-20">
+          <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-col items-start gap-4">
-              <Logo size="xl" className="text-primary" />
-              <p className="text-background/70 max-w-xs text-sm leading-relaxed">
+              <Logo size="lg" className="text-primary" />
+              <p className="text-background/85 max-w-xs text-base leading-relaxed">
                 Reabilitação oral, facetas, implantes e estética dental em Goiânia.
               </p>
             </div>
 
             <nav aria-label="Navegação do rodapé">
-              <ul className="grid grid-cols-2 gap-x-12 gap-y-3 text-sm md:grid-cols-1 md:gap-y-2">
+              <ul className="grid grid-cols-2 gap-x-12 gap-y-4 text-base md:grid-cols-1 md:gap-y-3">
                 <li>
                   <a
                     href="#tratamentos"
-                    className="text-background/80 hover:text-background transition-colors"
+                    className="text-background/85 hover:text-background transition-colors"
                   >
                     Tratamentos
                   </a>
@@ -1121,7 +1036,7 @@ function Footer() {
                 <li>
                   <a
                     href="#depoimentos"
-                    className="text-background/80 hover:text-background transition-colors"
+                    className="text-background/85 hover:text-background transition-colors"
                   >
                     Depoimentos
                   </a>
@@ -1129,7 +1044,7 @@ function Footer() {
                 <li>
                   <a
                     href="#sobre"
-                    className="text-background/80 hover:text-background transition-colors"
+                    className="text-background/85 hover:text-background transition-colors"
                   >
                     Sobre
                   </a>
@@ -1137,7 +1052,7 @@ function Footer() {
                 <li>
                   <a
                     href="#contato"
-                    className="text-background/80 hover:text-background transition-colors"
+                    className="text-background/85 hover:text-background transition-colors"
                   >
                     Contato
                   </a>
@@ -1146,8 +1061,8 @@ function Footer() {
             </nav>
           </div>
 
-          <div className="border-background/15 flex flex-col gap-3 border-t pt-8 text-xs md:flex-row md:items-center md:justify-between">
-            <p className="text-background/70">
+          <div className="border-background/15 flex flex-col gap-3 border-t pt-8 text-sm md:flex-row md:items-center md:justify-between">
+            <p className="text-background/85 leading-relaxed">
               <span className="text-background font-medium">
                 Dra. Juliane Florentino — CRO/GO XXXXX
               </span>
@@ -1156,7 +1071,7 @@ function Footer() {
             </p>
             <a
               href="#privacidade"
-              className="text-background/70 hover:text-background underline-offset-4 hover:underline"
+              className="text-background/85 hover:text-background underline-offset-4 hover:underline"
             >
               Política de Privacidade
             </a>
@@ -1178,7 +1093,7 @@ function StickyWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
-      className="bg-accent-whatsapp fixed right-4 bottom-4 z-50 inline-flex size-14 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 active:scale-95 md:right-6 md:bottom-6 md:size-16"
+      className="bg-accent-whatsapp focus-visible:ring-primary focus-visible:ring-offset-background fixed right-4 bottom-4 z-50 inline-flex size-14 items-center justify-center rounded-full text-white shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none md:right-6 md:bottom-6 md:size-16"
     >
       <WhatsAppIcon className="size-7 md:size-8" />
     </a>
@@ -1195,12 +1110,13 @@ export default function HomePage() {
       <Header />
       <main className="bg-background text-foreground">
         <HeroSection />
+        <ServicesStripSection />
+        <AntesDepoisSection />
         <DepoimentosSection />
-        <GallerySection />
-        <StorySection />
-        <TreatmentsSection />
-        <AuthoritySection />
-        <FinalCtaSection />
+        <ProblemaSection />
+        <TratamentosSection />
+        <SobreSection />
+        <ContatoSection />
       </main>
       <Footer />
       <StickyWhatsApp />

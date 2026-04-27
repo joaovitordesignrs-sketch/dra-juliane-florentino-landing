@@ -90,20 +90,16 @@
     font-family: var(--font-heading);
     letter-spacing: -0.01em;
   }
-}
 
-/* ---------- Marquee animation (continuous horizontal scroll) ---------- */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
+  /* Anchor targets sit ~80px below the top so the sticky header
+     never covers section headings when navigated via #hash links. */
+  section[id] {
+    scroll-margin-top: 5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none !important;
+  html {
+    scroll-behavior: auto;
   }
 }
