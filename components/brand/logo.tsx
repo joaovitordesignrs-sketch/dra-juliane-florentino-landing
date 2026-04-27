@@ -58,15 +58,7 @@ export function Logo({ width = 240, className, title }: LogoProps) {
       </text>
 
       {/* Decorative hairline divider between the two lines */}
-      <line
-        x1="78"
-        y1="50"
-        x2="162"
-        y2="50"
-        stroke="currentColor"
-        strokeWidth="1"
-        opacity="0.5"
-      />
+      <line x1="78" y1="50" x2="162" y2="50" stroke="currentColor" strokeWidth="1" opacity="0.5" />
 
       {/* Line 2: "FLORENTINO" — larger, weight 600, wider tracking */}
       <text
