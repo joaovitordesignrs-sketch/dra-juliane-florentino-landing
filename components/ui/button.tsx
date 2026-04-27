@@ -19,7 +19,10 @@ const buttonVariants = cva(
   // Base classes — applied to every variant + size
   [
     "inline-flex items-center justify-center gap-2",
-    "font-body rounded-md font-medium",
+    // Pill-shape (rounded-full) is the global button style for this landing —
+    // matches the reference visual treatment. Override via className on the
+    // rare exceptional placement.
+    "font-body rounded-full font-medium",
     "transition-colors duration-200",
     "focus-visible:ring-primary focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -37,9 +40,9 @@ const buttonVariants = cva(
         ghost: "text-foreground hover:bg-muted bg-transparent",
       },
       size: {
-        sm: "h-9 px-3 text-sm",
-        md: "h-11 px-5 text-base",
-        lg: "h-14 px-7 text-lg",
+        sm: "h-9 px-4 text-sm",
+        md: "h-11 px-6 text-base",
+        lg: "h-14 px-8 text-lg",
       },
     },
     defaultVariants: {

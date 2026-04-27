@@ -1,1 +1,1 @@
-export { Logo, type LogoProps } from "./logo";
+export { Logo, LogoMark, type LogoProps } from "./logo";
