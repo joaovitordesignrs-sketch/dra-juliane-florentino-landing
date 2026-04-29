@@ -255,11 +255,9 @@ function HeroSection() {
 
   const headlineNode = (
     <h1 className="font-heading text-background text-[2.6rem] leading-[1.08] font-light tracking-tight md:text-7xl lg:text-[5.25rem] xl:text-[5.75rem]">
-      Sorrir com
+      Volte a sorrir com
       <br />
-      <span className="text-primary font-light italic">confiança</span>
-      <br />
-      em Goiânia
+      <span className="text-primary font-light italic">confiança!</span>
     </h1>
   );
 
