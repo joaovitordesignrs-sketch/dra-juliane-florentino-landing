@@ -1,16 +1,16 @@
-import { Fraunces, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 
 /**
- * Heading font — Fraunces (variable serif, editorial feel).
- * Loaded weights: 400 (body-size headings), 500 (subheads), 600 (hero h1).
+ * Heading font — Cormorant Garamond (refined editorial serif with elegant italics).
+ * Loaded weights: 300 (light hero), 400 (body-size headings), 500 (subheads), 600 (emphasis).
  * `display: "swap"` is mandatory per CONTEXT.md (Acessibilidade & Performance LOCKED).
  */
-export const fontHeading = Fraunces({
+export const fontHeading = Cormorant_Garamond({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-heading",
-  weight: ["400", "500", "600"],
-  style: ["normal"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
   preload: true,
   fallback: ["Georgia", "Cambria", "Times New Roman", "Times", "serif"],
 });

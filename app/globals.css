@@ -20,19 +20,19 @@
    * inline verification script — current values are already at the floor on
    * background-soft.
    */
-  --color-background: #faf5ec;
-  --color-background-soft: #f1e8d8;
-  --color-foreground: #2c2620;
+  --color-background: #fafafa;
+  --color-background-soft: #f4f4f5;
+  --color-foreground: #1f2025;
 
-  --color-primary: #946f50;
+  --color-primary: #b08960;
   --color-primary-foreground: #ffffff;
-  --color-primary-strong: #735841;
+  --color-primary-strong: #8a6643;
   --color-primary-strong-foreground: #ffffff;
 
-  --color-muted: #ede2d2;
-  --color-muted-foreground: #6b5d4f;
+  --color-muted: #e4e4e7;
+  --color-muted-foreground: #52525b;
 
-  --color-border: #d4bc9f;
+  --color-border: #d4d4d8;
 
   --color-accent-whatsapp: #25d366;
 

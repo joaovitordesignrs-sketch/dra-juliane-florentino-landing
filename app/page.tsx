@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Logo } from "@/components/brand";
 import { Container } from "@/components/layout";
+import { TransformationsAutoplay } from "@/components/transformations-autoplay";
 import { Button } from "@/components/ui/button";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 
@@ -272,59 +273,61 @@ function HeroSection() {
   return (
     <section
       id="hero"
-      aria-labelledby="hero-title"
-      className="bg-background-soft py-12 md:py-20 lg:py-24"
+      aria-label="Apresentação — Dra. Juliane Florentino, Dentista em Goiânia"
+      className="bg-foreground"
     >
       <Container>
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 text-center lg:max-w-6xl lg:grid lg:grid-cols-2 lg:items-center lg:gap-16 lg:text-left">
-          <div className="flex w-full flex-col items-center gap-6 lg:order-1 lg:items-start lg:gap-8">
-            <p className="text-muted-foreground text-sm font-medium tracking-[0.2em] uppercase">
-              Dentista em Goiânia
-            </p>
-
-            <h1
-              id="hero-title"
-              className="font-heading text-foreground text-[2rem] leading-[1.1] font-medium tracking-tight lg:text-5xl"
-            >
-              Sorrir com confiança em Goiânia
-            </h1>
-
-            <p className="text-foreground max-w-prose text-lg leading-relaxed lg:text-xl">
-              Facetas, implantes, próteses e reabilitação oral com planejamento personalizado pela
-              Dra. Juliane Florentino.
-            </p>
-
-            <div className="w-full pt-2 sm:w-auto">
-              <Button
-                asChild
-                variant="primary"
-                size="lg"
-                className="h-14 w-full sm:w-auto"
-              >
-                <a href={wa(WA_MESSAGES.hero)} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon className="size-5" />
-                  Agendar avaliação pelo WhatsApp
-                </a>
-              </Button>
-            </div>
-
-            <p className="text-muted-foreground text-sm">
-              Atendimento humanizado · Goiânia, GO
-            </p>
-          </div>
-
-          <div className="w-full max-w-md lg:order-2 lg:max-w-none">
-            <div className="border-border bg-muted relative aspect-[4/5] w-full overflow-hidden rounded-3xl border shadow-md">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-7 pt-14 pb-10 text-center md:gap-9 md:pt-24 md:pb-12 lg:max-w-4xl lg:gap-10 lg:pt-28 lg:pb-14">
+          <div className="flex flex-col items-center gap-5">
+            <div className="ring-primary/55 ring-offset-foreground relative size-20 shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 md:size-24">
               <Image
                 src="/images/dra-juliane-portrait.jpg"
-                alt="Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
+                alt="Retrato da Dra. Juliane Florentino"
                 fill
-                sizes="(max-width: 1024px) 90vw, 480px"
+                sizes="96px"
                 className="object-cover"
                 priority
               />
             </div>
+            <div className="border-primary/45 inline-flex items-center gap-2.5 rounded-full border px-4 py-2">
+              <span aria-hidden="true" className="bg-primary size-1.5 rounded-full" />
+              <span className="text-primary text-[0.7rem] font-medium tracking-[0.18em] uppercase md:text-xs">
+                Dra. Juliane Florentino · Goiânia-GO
+              </span>
+            </div>
           </div>
+
+          <h1 className="font-heading text-background text-[2.6rem] leading-[1.08] font-light tracking-tight md:text-7xl lg:text-[5.75rem]">
+            Sorrir com
+            <br />
+            <span className="text-primary font-light italic">confiança</span>
+            <br />
+            em Goiânia
+          </h1>
+
+          <p className="text-background/75 max-w-prose text-lg leading-relaxed md:text-xl">
+            Facetas, implantes, próteses e reabilitação oral com planejamento personalizado pela
+            Dra. Juliane Florentino.
+          </p>
+        </div>
+      </Container>
+
+      {/* Auto-play carousel — visual proof inside the dark hero (mobile only) */}
+      <div className="pb-9 lg:hidden">
+        <TransformationsAutoplay items={TRANSFORMATIONS} />
+      </div>
+
+      <Container>
+        <div className="flex flex-col items-center gap-5 pb-14 text-center md:pb-20 lg:pb-24">
+          <Button asChild variant="primary" size="lg" className="h-14 w-full sm:w-auto sm:px-10">
+            <a href={wa(WA_MESSAGES.hero)} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon className="size-5" />
+              Agendar avaliação pelo WhatsApp
+            </a>
+          </Button>
+          <p className="text-background/60 text-sm">
+            Atendimento humanizado · Goiânia, GO
+          </p>
         </div>
       </Container>
     </section>
