@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { Logo } from "@/components/brand";
+import { Header } from "@/components/header";
 import { Container } from "@/components/layout";
 import { TransformationsAutoplay } from "@/components/transformations-autoplay";
 import { Button } from "@/components/ui/button";
@@ -240,96 +240,141 @@ function BulletList({ items }: { items: readonly string[] }) {
 }
 
 // ─────────────────────────────────────────────────────────
-// Header (sticky, blends with hero band)
-// ─────────────────────────────────────────────────────────
-
-function Header() {
-  return (
-    <header className="bg-background-soft/95 supports-[backdrop-filter]:bg-background-soft/85 sticky top-0 z-40 w-full backdrop-blur">
-      <Container>
-        <div className="flex h-16 items-center justify-between md:h-20">
-          <Link href="#hero" aria-label="Início — Dra. Juliane Florentino" className="shrink-0">
-            <Logo size="sm" className="text-primary-strong md:hidden" />
-            <Logo size="md" className="text-primary-strong hidden md:inline-flex" />
-          </Link>
-
-          <Button asChild variant="primary" size="sm" className="md:h-12 md:px-6 md:text-base">
-            <a href={wa(WA_MESSAGES.header)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="size-4" />
-              <span>Agendar</span>
-            </a>
-          </Button>
-        </div>
-      </Container>
-    </header>
-  );
-}
-
-// ─────────────────────────────────────────────────────────
 // Section 1 — Hero (single column on mobile, clean)
 // ─────────────────────────────────────────────────────────
 
 function HeroSection() {
+  const pillBadge = (
+    <div className="border-primary/45 inline-flex items-center gap-2.5 rounded-full border px-4 py-2">
+      <span aria-hidden="true" className="bg-primary size-1.5 rounded-full" />
+      <span className="text-primary text-[0.7rem] font-medium tracking-[0.18em] uppercase md:text-xs">
+        Dra. Juliane Florentino · Goiânia-GO
+      </span>
+    </div>
+  );
+
+  const headlineNode = (
+    <h1 className="font-heading text-background text-[2.6rem] leading-[1.08] font-light tracking-tight md:text-7xl lg:text-[5.25rem] xl:text-[5.75rem]">
+      Sorrir com
+      <br />
+      <span className="text-primary font-light italic">confiança</span>
+      <br />
+      em Goiânia
+    </h1>
+  );
+
+  const subtitleNode = (
+    <p className="text-background/75 max-w-prose text-lg leading-relaxed md:text-xl">
+      Facetas, implantes, próteses e reabilitação oral com planejamento personalizado pela Dra.
+      Juliane Florentino.
+    </p>
+  );
+
+  const ctaNode = (
+    <Button asChild variant="primary" size="lg" className="h-14 w-full sm:w-auto sm:px-10">
+      <a href={wa(WA_MESSAGES.hero)} target="_blank" rel="noopener noreferrer">
+        <WhatsAppIcon className="size-5" />
+        Agendar avaliação pelo WhatsApp
+      </a>
+    </Button>
+  );
+
+  const captionNode = <p className="text-background/60 text-sm">Atendimento humanizado · Goiânia, GO</p>;
+
   return (
     <section
       id="hero"
       aria-label="Apresentação — Dra. Juliane Florentino, Dentista em Goiânia"
-      className="bg-foreground"
+      className="bg-foreground relative overflow-hidden"
     >
-      <Container>
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-7 pt-14 pb-10 text-center md:gap-9 md:pt-24 md:pb-12 lg:max-w-4xl lg:gap-10 lg:pt-28 lg:pb-14">
-          <div className="flex flex-col items-center gap-5">
-            <div className="ring-primary/55 ring-offset-foreground relative size-20 shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 md:size-24">
-              <Image
-                src="/images/dra-juliane-portrait.jpg"
-                alt="Retrato da Dra. Juliane Florentino"
-                fill
-                sizes="96px"
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="border-primary/45 inline-flex items-center gap-2.5 rounded-full border px-4 py-2">
-              <span aria-hidden="true" className="bg-primary size-1.5 rounded-full" />
-              <span className="text-primary text-[0.7rem] font-medium tracking-[0.18em] uppercase md:text-xs">
-                Dra. Juliane Florentino · Goiânia-GO
-              </span>
-            </div>
-          </div>
-
-          <h1 className="font-heading text-background text-[2.6rem] leading-[1.08] font-light tracking-tight md:text-7xl lg:text-[5.75rem]">
-            Sorrir com
-            <br />
-            <span className="text-primary font-light italic">confiança</span>
-            <br />
-            em Goiânia
-          </h1>
-
-          <p className="text-background/75 max-w-prose text-lg leading-relaxed md:text-xl">
-            Facetas, implantes, próteses e reabilitação oral com planejamento personalizado pela
-            Dra. Juliane Florentino.
-          </p>
-        </div>
-      </Container>
-
-      {/* Auto-play carousel — visual proof inside the dark hero (mobile only) */}
-      <div className="pb-9 lg:hidden">
-        <TransformationsAutoplay items={TRANSFORMATIONS} />
+      {/* Ambient clinic backdrop — very low opacity on all viewports */}
+      <div className="pointer-events-none absolute inset-0 select-none">
+        <Image
+          src="/images/clinic-office.jpg"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.12]"
+          priority={false}
+        />
+        <div className="from-foreground/50 to-foreground/50 absolute inset-0 bg-gradient-to-r via-transparent lg:from-foreground/40 lg:to-foreground/40" />
       </div>
 
-      <Container>
-        <div className="flex flex-col items-center gap-5 pb-14 text-center md:pb-20 lg:pb-24">
-          <Button asChild variant="primary" size="lg" className="h-14 w-full sm:w-auto sm:px-10">
-            <a href={wa(WA_MESSAGES.hero)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="size-5" />
-              Agendar avaliação pelo WhatsApp
-            </a>
-          </Button>
-          <p className="text-background/60 text-sm">
-            Atendimento humanizado · Goiânia, GO
-          </p>
+      {/* MOBILE — centered with round avatar + autoplay carousel */}
+      <div className="relative z-10 lg:hidden">
+        <Container>
+          <div className="mx-auto flex max-w-3xl flex-col items-center gap-7 pt-14 pb-10 text-center md:gap-9 md:pt-24 md:pb-12">
+            <div className="flex flex-col items-center gap-5">
+              <div className="ring-primary/55 ring-offset-foreground relative size-20 shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 md:size-24">
+                <Image
+                  src="/images/dra-juliane-portrait.jpg"
+                  alt="Retrato da Dra. Juliane Florentino"
+                  fill
+                  sizes="96px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {pillBadge}
+            </div>
+
+            {headlineNode}
+            {subtitleNode}
+          </div>
+        </Container>
+
+        <div className="pb-9">
+          <TransformationsAutoplay items={TRANSFORMATIONS} />
         </div>
-      </Container>
+
+        <Container>
+          <div className="flex flex-col items-center gap-5 pb-14 text-center md:pb-20">
+            {ctaNode}
+            {captionNode}
+          </div>
+        </Container>
+      </div>
+
+      {/* DESKTOP — text left-aligned, full portrait on the right with glassmorphism info card */}
+      <div className="relative z-10 hidden lg:block">
+        <Container>
+          <div className="grid grid-cols-12 items-center gap-12 py-24 xl:gap-16 xl:py-28">
+            <div className="col-span-7 flex flex-col items-start gap-9 text-left">
+              {headlineNode}
+              {subtitleNode}
+              <div className="flex flex-col items-start gap-4 pt-2">
+                {ctaNode}
+                {captionNode}
+              </div>
+            </div>
+
+            <div className="col-span-5">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
+                <Image
+                  src="/images/dra-juliane-portrait.jpg"
+                  alt="Retrato da Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
+                  fill
+                  sizes="(min-width: 1280px) 480px, 40vw"
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-x-5 bottom-5 flex items-center gap-3.5 rounded-2xl border border-white/15 bg-white/10 px-5 py-3.5 shadow-2xl backdrop-blur-xl">
+                  <span aria-hidden="true" className="bg-primary size-2 shrink-0 rounded-full" />
+                  <div className="min-w-0">
+                    <p className="text-background text-sm font-medium leading-tight">
+                      Dra. Juliane Florentino
+                    </p>
+                    <p className="text-background/75 mt-0.5 text-[0.65rem] leading-tight font-medium tracking-[0.18em] uppercase">
+                      Goiânia-GO
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
     </section>
   );
 }
@@ -1110,7 +1155,7 @@ function StickyWhatsApp() {
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <Header whatsappHref={wa(WA_MESSAGES.header)} />
       <main className="bg-background text-foreground">
         <HeroSection />
         <ServicesStripSection />
