@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Logo } from "@/components/brand";
 import { Header } from "@/components/header";
 import { Container } from "@/components/layout";
+import { GoogleReviewsSection } from "@/components/sections/google-reviews";
 import { TransformationsAutoplay } from "@/components/transformations-autoplay";
 import { Button } from "@/components/ui/button";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
@@ -58,20 +59,6 @@ function WhatsAppIcon({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.002-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
-    </svg>
-  );
-}
-
-function StarIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden="true"
-    >
-      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
     </svg>
   );
 }
@@ -213,16 +200,6 @@ function DropletIcon({ className }: { className?: string }) {
 // Reusable bits
 // ─────────────────────────────────────────────────────────
 
-function StarRow() {
-  return (
-    <div className="text-primary-strong flex gap-1" aria-label="5 estrelas">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <StarIcon key={i} className="size-5" />
-      ))}
-    </div>
-  );
-}
-
 function BulletList({ items }: { items: readonly string[] }) {
   return (
     <ul className="space-y-4">
@@ -306,7 +283,7 @@ function HeroSection() {
             <div className="flex flex-col items-center gap-5">
               <div className="ring-primary/55 ring-offset-foreground relative size-20 shrink-0 overflow-hidden rounded-full ring-2 ring-offset-2 md:size-24">
                 <Image
-                  src="/images/dra-juliane-portrait.jpg"
+                  src="/images/dra-juliane-2.jpeg"
                   alt="Retrato da Dra. Juliane Florentino"
                   fill
                   sizes="96px"
@@ -350,7 +327,7 @@ function HeroSection() {
             <div className="col-span-5">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/dra-juliane-portrait.jpg"
+                  src="/images/dra-juliane-2.jpeg"
                   alt="Retrato da Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
                   fill
                   sizes="(min-width: 1280px) 480px, 40vw"
@@ -428,34 +405,39 @@ function ServicesStripSection() {
 
 const TRANSFORMATIONS = [
   {
+    src: "/images/pr%C3%B3tese-dent%C3%A1ria.jpeg",
+    alt: "Caso 1 — prótese dentária para reabilitação do sorriso",
+    label: "Caso 1 · Prótese dentária",
+  },
+  {
     src: "/images/case-veneers-1.jpg",
-    alt: "Caso 1 — facetas dentárias para harmonização do sorriso",
-    label: "Caso 1 · Facetas dentárias",
+    alt: "Caso 2 — facetas dentárias para harmonização do sorriso",
+    label: "Caso 2 · Facetas dentárias",
   },
   {
     src: "/images/case-veneers-2.jpg",
-    alt: "Caso 2 — facetas em porcelana para clareamento e formato",
-    label: "Caso 2 · Facetas em porcelana",
+    alt: "Caso 3 — facetas em porcelana para clareamento e formato",
+    label: "Caso 3 · Facetas em porcelana",
   },
   {
     src: "/images/case-implant-1.jpg",
-    alt: "Caso 3 — implante dentário com coroa estética",
-    label: "Caso 3 · Implante dentário",
+    alt: "Caso 4 — implante dentário com coroa estética",
+    label: "Caso 4 · Implante dentário",
   },
   {
     src: "/images/hero-transformation-1.jpg",
-    alt: "Caso 4 — reabilitação oral completa com mudança de autoestima",
-    label: "Caso 4 · Reabilitação completa",
+    alt: "Caso 5 — reabilitação oral completa com mudança de autoestima",
+    label: "Caso 5 · Reabilitação completa",
   },
   {
     src: "/images/hero-smile-1.jpg",
-    alt: "Caso 5 — sorriso natural após tratamento estético",
-    label: "Caso 5 · Sorriso natural",
+    alt: "Caso 6 — sorriso natural após tratamento estético",
+    label: "Caso 6 · Sorriso natural",
   },
   {
     src: "/images/smile-after-1.jpg",
-    alt: "Caso 6 — resultado de reabilitação oral",
-    label: "Caso 6 · Reabilitação",
+    alt: "Caso 7 — resultado de reabilitação oral",
+    label: "Caso 7 · Reabilitação",
   },
 ] as const;
 
@@ -540,10 +522,10 @@ function AntesDepoisSection() {
 }
 
 // ─────────────────────────────────────────────────────────
-// Section 3 — Depoimentos (scroll-snap on mobile, grid on lg+)
+// Section 3 — Depoimentos (Google Reviews em tempo real, com fallback estático)
 // ─────────────────────────────────────────────────────────
 
-const TESTIMONIALS = [
+const TESTIMONIALS_FALLBACK = [
   {
     quote:
       "Atendimento excepcional, Dra. Juliane é super atenciosa e o resultado das minhas facetas ficou perfeito. Voltei a sorrir com confiança.",
@@ -565,86 +547,6 @@ const TESTIMONIALS = [
     name: "Patrícia R.",
   },
 ] as const;
-
-function DepoimentosSection() {
-  return (
-    <section
-      id="depoimentos"
-      aria-labelledby="depoimentos-title"
-      className="bg-background-soft py-16 md:py-24"
-    >
-      <Container>
-        <div className="mx-auto max-w-3xl space-y-6 text-center">
-          <h2
-            id="depoimentos-title"
-            className="font-heading text-foreground text-2xl font-medium tracking-tight lg:text-4xl"
-          >
-            Pacientes que voltaram a sorrir com segurança
-          </h2>
-          <p className="text-foreground text-lg leading-relaxed">
-            A experiência de quem confiou seu sorriso à Dra. Juliane Florentino.
-          </p>
-        </div>
-      </Container>
-
-      {/* Carousel on mobile, grid on lg+. */}
-      <div
-        className="mt-10 overflow-x-auto md:mt-14 lg:overflow-visible"
-        role="region"
-        aria-label="Depoimentos de pacientes"
-        tabIndex={0}
-      >
-        <ul className="flex snap-x snap-mandatory gap-4 px-4 pb-4 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-6 lg:px-8 lg:pb-0 xl:grid-cols-4">
-          {TESTIMONIALS.map((t) => (
-            <li
-              key={t.name}
-              className="snap-center shrink-0 basis-[85%] sm:basis-[60%] lg:basis-auto"
-            >
-              <article className="border-border bg-background flex h-full flex-col gap-5 rounded-3xl border p-6 shadow-sm">
-                <StarRow />
-                <blockquote className="text-foreground text-lg leading-relaxed">
-                  <p>&ldquo;{t.quote}&rdquo;</p>
-                </blockquote>
-                <div className="border-border/70 mt-auto border-t pt-4">
-                  <p className="font-heading text-foreground text-lg font-medium">{t.name}</p>
-                  <p className="text-muted-foreground mt-1 text-sm">Avaliação Google</p>
-                </div>
-              </article>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <Container>
-        <p className="text-muted-foreground mt-2 text-center text-sm lg:hidden">
-          Arraste para ver mais
-        </p>
-
-        <div className="mt-10 flex flex-col items-center gap-6 text-center md:mt-12">
-          <a
-            href="https://share.google/nNeXUPmxMvu0v8a6y"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-foreground hover:text-primary-strong text-base underline underline-offset-4 transition-colors"
-          >
-            Ver mais avaliações no Google
-          </a>
-          <Button
-            asChild
-            variant="primary"
-            size="lg"
-            className="h-14 w-full sm:w-auto"
-          >
-            <a href={wa(WA_MESSAGES.social)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="size-5" />
-              Agendar minha avaliação
-            </a>
-          </Button>
-        </div>
-      </Container>
-    </section>
-  );
-}
 
 // ─────────────────────────────────────────────────────────
 // Section 4 — Story / Problema
@@ -782,8 +684,8 @@ const TREATMENTS: readonly TreatmentCard[] = [
       "Adaptação personalizada e acompanhamento",
     ],
     image: {
-      src: "/images/smile-after-1.jpg",
-      alt: "Sorriso reabilitado com prótese",
+      src: "/images/pr%C3%B3tese-dent%C3%A1ria.jpeg",
+      alt: "Prótese dentária — reabilitação com prótese",
     },
   },
   {
@@ -897,7 +799,7 @@ function SobreSection() {
           <div className="lg:col-span-5 lg:order-1">
             <div className="border-border bg-muted relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-3xl border shadow-md lg:max-w-none">
               <Image
-                src="/images/dra-juliane-portrait-alt.jpg"
+                src="/images/dra-juliane-3.jpeg"
                 alt="Dra. Juliane Florentino — dentista especialista em prótese dental e reabilitação oral em Goiânia"
                 fill
                 sizes="(max-width: 1024px) 90vw, 440px"
@@ -1034,6 +936,7 @@ function ContatoSection() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Clínica da Dra. Juliane Florentino — Goiânia"
+              suppressHydrationWarning
             />
           </div>
 
@@ -1158,7 +1061,11 @@ export default function HomePage() {
         <HeroSection />
         <ServicesStripSection />
         <AntesDepoisSection />
-        <DepoimentosSection />
+        <GoogleReviewsSection
+          ctaHref={wa(WA_MESSAGES.social)}
+          ctaIcon={<WhatsAppIcon className="size-5" />}
+          fallback={TESTIMONIALS_FALLBACK}
+        />
         <ProblemaSection />
         <TratamentosSection />
         <SobreSection />
