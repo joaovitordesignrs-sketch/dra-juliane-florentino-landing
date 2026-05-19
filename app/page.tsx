@@ -1014,7 +1014,7 @@ function Footer() {
           <div className="border-background/15 flex flex-col gap-3 border-t pt-8 text-sm md:flex-row md:items-center md:justify-between">
             <p className="text-background/85 leading-relaxed">
               <span className="text-background font-medium">
-                Dra. Juliane Florentino — CRO/GO 6819
+                Dra. Juliane Florentino — CRO-GO 6819
               </span>
               <span className="mx-2 hidden md:inline">·</span>
               <span className="block md:inline">© 2026 — Todos os direitos reservados</span>
