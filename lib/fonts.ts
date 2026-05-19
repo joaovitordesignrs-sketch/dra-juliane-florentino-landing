@@ -1,10 +1,5 @@
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 
-/**
- * Heading font — Cormorant Garamond (refined editorial serif with elegant italics).
- * Loaded weights: 300 (light hero), 400 (body-size headings), 500 (subheads), 600 (emphasis).
- * `display: "swap"` is mandatory per CONTEXT.md (Acessibilidade & Performance LOCKED).
- */
 export const fontHeading = Cormorant_Garamond({
   subsets: ["latin"],
   display: "swap",
@@ -15,11 +10,7 @@ export const fontHeading = Cormorant_Garamond({
   fallback: ["Georgia", "Cambria", "Times New Roman", "Times", "serif"],
 });
 
-/**
- * Body font — Inter (variable sans, premium legibility on mobile).
- * `display: "swap"` is mandatory.
- */
-export const fontBody = Inter({
+export const fontBody = Montserrat({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
@@ -37,4 +28,3 @@ export const fontBody = Inter({
     "sans-serif",
   ],
 });
-
