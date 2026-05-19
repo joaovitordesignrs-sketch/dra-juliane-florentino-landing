@@ -986,25 +986,30 @@ function Footer() {
               </h3>
               <div className="flex items-start gap-3 text-base">
                 <MapPinIcon className="text-primary mt-0.5 size-5 shrink-0" />
-                <p className="text-background/85 leading-relaxed">
-                  Goiânia — GO
+                <a
+                  href="https://www.google.com/maps?q=Av.+T-2%2C+224+-+Quadra+98+-+St.+Bueno%2C+Goi%C3%A2nia+-+GO%2C+74210-010"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-background/85 hover:text-background leading-relaxed transition-colors"
+                >
+                  Av. T-2, 224 — Quadra 98
                   <br />
                   <span className="text-background/65 text-sm">
-                    Endereço completo confirmado no contato pelo WhatsApp.
+                    St. Bueno · Goiânia-GO · CEP 74210-010
                   </span>
-                </p>
+                </a>
               </div>
 
               <div className="border-background/15 overflow-hidden rounded-2xl border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244833.55617!2d-49.4!3d-16.6786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef39d4a2cef0d%3A0xa3b3f1e8e83fe6f1!2sGoi%C3%A2nia%2C%20GO!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+                  src="https://www.google.com/maps?q=Av.+T-2%2C+224+-+Quadra+98+-+St.+Bueno%2C+Goi%C3%A2nia+-+GO%2C+74210-010&output=embed"
                   width="100%"
                   height={200}
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Clínica da Dra. Juliane Florentino — Goiânia"
+                  title="Clínica da Dra. Juliane Florentino — Av. T-2, 224, Setor Bueno, Goiânia"
                   suppressHydrationWarning
                 />
               </div>
