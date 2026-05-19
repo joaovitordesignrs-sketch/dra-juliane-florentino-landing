@@ -921,7 +921,7 @@ function ChamadaFinalSection() {
 
 function Footer() {
   return (
-    <footer className="bg-foreground text-background w-full rounded-t-3xl">
+    <footer className="bg-foreground text-background w-full">
       <Container>
         <div className="flex flex-col gap-14 py-14 md:py-20">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
