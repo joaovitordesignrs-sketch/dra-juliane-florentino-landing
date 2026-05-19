@@ -523,13 +523,13 @@ function TratamentosSection() {
           {TREATMENTS.map(({ title, description, image }) => (
             <li key={title}>
               <article className="border-border bg-background flex h-full flex-col gap-5 rounded-3xl border p-5 shadow-sm lg:p-6">
-                <div className="border-border bg-muted relative aspect-[4/3] w-full overflow-hidden rounded-2xl border">
+                <div className="border-border bg-muted relative aspect-[6/5] w-full overflow-hidden rounded-2xl border">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
 
