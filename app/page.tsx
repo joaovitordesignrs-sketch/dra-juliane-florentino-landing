@@ -311,12 +311,12 @@ function HeroSection() {
     >
       <div className="pointer-events-none absolute inset-0 select-none">
         <Image
-          src="/images/clinic-office.jpg"
+          src="/images/clinica-consultorio.jpg"
           alt=""
           aria-hidden="true"
           fill
           sizes="100vw"
-          className="object-cover opacity-15"
+          className="object-cover opacity-20"
           priority={false}
         />
         <div className="from-foreground/60 to-foreground/60 absolute inset-0 bg-gradient-to-r via-transparent lg:from-foreground/45 lg:to-foreground/45" />
@@ -786,10 +786,10 @@ function SobreSection() {
       <Container>
         <div className="mx-auto flex max-w-3xl flex-col gap-10 lg:max-w-6xl lg:grid lg:grid-cols-12 lg:items-start lg:gap-16">
           <div className="lg:col-span-5 lg:order-1">
-            <div className="border-border bg-muted relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-3xl border shadow-md lg:max-w-none">
+            <div className="border-border bg-muted relative mx-auto aspect-[1353/1600] w-full max-w-md overflow-hidden rounded-3xl border shadow-md lg:max-w-none">
               <Image
-                src="/images/dra-juliane-portrait.jpg"
-                alt="Dra. Juliane Florentino — trajetória profissional"
+                src="/images/dra-juliane-trajetoria.jpg"
+                alt="Dra. Juliane Florentino — retrato profissional"
                 fill
                 sizes="(max-width: 1024px) 90vw, 440px"
                 className="object-cover"
