@@ -999,31 +999,32 @@ function Footer() {
                   </span>
                 </a>
               </div>
-
-              <div className="border-background/15 relative aspect-[1600/1100] overflow-hidden rounded-2xl border">
-                <Image
-                  src="/images/clinica-consultorio.jpg"
-                  alt="Consultório da Dra. Juliane Florentino — Setor Bueno, Goiânia"
-                  fill
-                  sizes="(max-width: 1024px) 90vw, 360px"
-                  className="object-cover"
-                />
-              </div>
             </div>
           </div>
 
-          <div className="border-background/15 overflow-hidden rounded-2xl border">
-            <iframe
-              src="https://www.google.com/maps?q=Av.+T-2%2C+224+-+Quadra+98+-+St.+Bueno%2C+Goi%C3%A2nia+-+GO%2C+74210-010&output=embed"
-              width="100%"
-              height={280}
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Clínica da Dra. Juliane Florentino — Av. T-2, 224, Setor Bueno, Goiânia"
-              suppressHydrationWarning
-            />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+            <div className="border-background/15 relative aspect-[16/10] overflow-hidden rounded-2xl border">
+              <Image
+                src="/images/clinica-consultorio.jpg"
+                alt="Consultório da Dra. Juliane Florentino — Setor Bueno, Goiânia"
+                fill
+                sizes="(max-width: 768px) 90vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="border-background/15 aspect-[16/10] overflow-hidden rounded-2xl border">
+              <iframe
+                src="https://www.google.com/maps?q=Av.+T-2%2C+224+-+Quadra+98+-+St.+Bueno%2C+Goi%C3%A2nia+-+GO%2C+74210-010&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Clínica da Dra. Juliane Florentino — Av. T-2, 224, Setor Bueno, Goiânia"
+                suppressHydrationWarning
+              />
+            </div>
           </div>
 
           <div className="border-background/15 flex flex-col gap-3 border-t pt-8 text-sm md:flex-row md:items-center md:justify-between">
